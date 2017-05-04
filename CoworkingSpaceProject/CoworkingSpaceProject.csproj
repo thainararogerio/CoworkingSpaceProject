@@ -59,6 +59,8 @@
     <Compile Include="Banco\ClienteDAO.cs" />
     <Compile Include="Banco\EquipamentoDAO.cs" />
     <Compile Include="Banco\LocalidadeDAO.cs" />
+    <Compile Include="Banco\MultaDAO.cs" />
+    <Compile Include="Model\multa.cs" />
     <Compile Include="Banco\ReservaDAO.cs" />
     <Compile Include="Banco\SalaDAO.cs" />
     <Compile Include="Banco\SalaEquipamentoDAO.cs" />

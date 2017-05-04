@@ -80,8 +80,8 @@ create table reserva
 	cd_reserva int not null primary key,
 	cd_cliente int not null references cliente(cd_cliente),
 	cd_sala int not null references sala(cd_sala),
-	dt_entrada date,
-	dt_saida date,
+	dt_entrada datetime,
+	dt_saida datetime,
 	vl_reserva numeric(8,2),
 	fl_pago char(1)
 );
@@ -91,19 +91,20 @@ create table multa
 	cd_multa int not null primary key,
 	cd_reserva int not null references reserva(cd_reserva),
 	vl_multa numeric(8,2),
-	dt_pagto date
+	dt_pagto datetime
 );
 
-
-
-select * from cliente
 select * from tp_equipamento
+select * from equipamento
 select * from tp_sala
 select * from sala
-select * from equipamento
-select * from localidade
-select * from reserva
 select * from sala_equipamento
+
+select * from localidade
+select * from cliente
+select * from reserva
+
+select * from multa
 
 
 Objetivo: informatizar estabelecimentos

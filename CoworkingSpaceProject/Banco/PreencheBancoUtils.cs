@@ -39,11 +39,7 @@ namespace CoworkingSpaceProject
             EquipamentoDAO.Add(equipamento8, conexaoSql);
         }
 
-        internal void AddReservas(SqlConnection _conexaoSql)
-        {
-            reserva 
-        }
-
+        
         internal void AddTiposSalas(SqlConnection conexaoSql)
         {
             tp_sala tpSala1 = new tp_sala() { cd_tp_sala = 1, nm_tp_sala = "Sala 1", tamanho = 1 };
@@ -127,6 +123,27 @@ namespace CoworkingSpaceProject
             ClienteDAO.Add(empregado2do2, conexaoSql);
         }                  
 
-        
+        internal void AddReservas(SqlConnection conexaoSql)
+        {
+            reserva reserva1 = new reserva() { cd_cliente = 1, cd_reserva = 1, cd_sala = 1, dt_entrada = 
+                new DateTime(2017, 01, 01, 01, 00, 00), dt_saida = new DateTime(2017, 01, 01, 23, 00, 00), fl_pago = true, vl_reserva = 10.0F };
+            reserva reserva2 = new reserva() { cd_cliente = 2, cd_reserva = 2, cd_sala = 2, dt_entrada = 
+                new DateTime(2017, 01, 02, 01, 00, 00), dt_saida = new DateTime(2017, 01, 02, 23, 00, 00), fl_pago = true, vl_reserva = 10.0F };
+            reserva reserva3 = new reserva() { cd_cliente = 3, cd_reserva = 3, cd_sala = 3, dt_entrada = 
+                new DateTime(2017, 01, 03, 01, 00, 00), dt_saida = new DateTime(2017, 01, 03, 23, 00, 00), fl_pago = false, vl_reserva = 10.0F };
+
+            ReservaDAO.Add(reserva1, conexaoSql);
+            ReservaDAO.Add(reserva2, conexaoSql);
+            ReservaDAO.Add(reserva3, conexaoSql);
+        }
+
+        internal void AddMulta(SqlConnection conexaoSql)
+        {
+            multa multa1 = new multa() { cd_multa = 1, cd_reserva = 1, dt_pagto = new DateTime(2017, 02, 01, 12, 00, 00), vl_multa = 5.0F };
+            multa multa2 = new multa() { cd_multa = 2, cd_reserva = 2, dt_pagto = new DateTime(2017, 03, 01, 13, 00, 00), vl_multa = 15.0F };
+
+            MultaDAO.Add(multa1, conexaoSql);
+            MultaDAO.Add(multa2, conexaoSql);
+        }
     }
 }

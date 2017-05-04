@@ -58,6 +58,23 @@ namespace CoworkingSpaceProject
             }
         }
 
+        internal List<tp_equipamento> BuscaTiposEquipamento()
+        {
+            return TipoEquipamentoDAO.Busca(_conexaoSql);
+        }
+
+        internal void AddMulta(multa novaMulta = null)
+        {
+            if (_debug)
+            {
+                _preencheBancoUtils.AddMulta(_conexaoSql);
+            }
+            else
+            {
+                MultaDAO.Add(novaMulta, _conexaoSql);
+            }
+        }
+
         internal void AddSalaEquipamento(sala_equipamento novaSalaEquip = null)
         {
             if (_debug)
@@ -68,6 +85,11 @@ namespace CoworkingSpaceProject
             {
                 SalaEquipamentoDAO.Add(novaSalaEquip, _conexaoSql);
             }
+        }
+
+        internal List<equipamento> BuscaEquipamentos()
+        {
+            return EquipamentoDAO.Busca(_conexaoSql);
         }
 
         internal void AddCliente(cliente novoCliente = null)
@@ -82,7 +104,12 @@ namespace CoworkingSpaceProject
             }
         }
 
-        internal void AddReserva()
+        internal List<tp_sala> BuscaTiposSala()
+        {
+            return TipoSalaDAO.Busca(_conexaoSql);
+        }
+
+        internal void AddReserva(reserva novaReserva = null)
         {
             if (_debug)
             {
@@ -90,7 +117,7 @@ namespace CoworkingSpaceProject
             }
             else
             {
-                LocalidadeDAO.Add(novaLoc, _conexaoSql);
+                ReservaDAO.Add(novaReserva, _conexaoSql);
             }
         }
 

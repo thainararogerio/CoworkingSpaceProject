@@ -28,188 +28,164 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.bt_reservas = new System.Windows.Forms.Button();
-            this.bt_salas = new System.Windows.Forms.Button();
-            this.bt_clientes = new System.Windows.Forms.Button();
-            this.bt_equipamentos = new System.Windows.Forms.Button();
-            this.bt_inicia = new System.Windows.Forms.Button();
-            this.bt_addReserva = new System.Windows.Forms.Button();
-            this.bt_addTipoSala = new System.Windows.Forms.Button();
-            this.bt_addTipoEquipamento = new System.Windows.Forms.Button();
-            this.bt_addEquipamento = new System.Windows.Forms.Button();
-            this.bt_addSala = new System.Windows.Forms.Button();
-            this.bt_addSalaEquipamento = new System.Windows.Forms.Button();
-            this.bt_addLocalidade = new System.Windows.Forms.Button();
-            this.bt_addCliente = new System.Windows.Forms.Button();
+            this.components = new System.ComponentModel.Container();
+            this.bt_Reservas = new System.Windows.Forms.Button();
+            this.bt_Salas = new System.Windows.Forms.Button();
+            this.bt_Equipamentos = new System.Windows.Forms.Button();
+            this.bt_PopulaBanco = new System.Windows.Forms.Button();
+            this.bt_TiposEquipamento = new System.Windows.Forms.Button();
+            this.bt_TiposSala = new System.Windows.Forms.Button();
+            this.bt_Clientes = new System.Windows.Forms.Button();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.txtBox_TiposEquipamentos = new System.Windows.Forms.TextBox();
+            this.txtBox_Equipamentos = new System.Windows.Forms.TextBox();
+            this.txtBox_TiposSala = new System.Windows.Forms.TextBox();
+            this.txtBox_Salas = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
-            // bt_reservas
+            // bt_Reservas
             // 
-            this.bt_reservas.Location = new System.Drawing.Point(78, 12);
-            this.bt_reservas.Name = "bt_reservas";
-            this.bt_reservas.Size = new System.Drawing.Size(109, 23);
-            this.bt_reservas.TabIndex = 0;
-            this.bt_reservas.Text = "Busca reservas";
-            this.bt_reservas.UseVisualStyleBackColor = true;
-            this.bt_reservas.Click += new System.EventHandler(this.bt_reservas_Click);
+            this.bt_Reservas.Location = new System.Drawing.Point(458, 305);
+            this.bt_Reservas.Name = "bt_Reservas";
+            this.bt_Reservas.Size = new System.Drawing.Size(130, 23);
+            this.bt_Reservas.TabIndex = 0;
+            this.bt_Reservas.Text = "Reservas";
+            this.bt_Reservas.UseVisualStyleBackColor = true;
+            this.bt_Reservas.Click += new System.EventHandler(this.bt_reservas_Click);
             // 
-            // bt_salas
+            // bt_Salas
             // 
-            this.bt_salas.Location = new System.Drawing.Point(78, 50);
-            this.bt_salas.Name = "bt_salas";
-            this.bt_salas.Size = new System.Drawing.Size(109, 23);
-            this.bt_salas.TabIndex = 1;
-            this.bt_salas.Text = "Busca salas";
-            this.bt_salas.UseVisualStyleBackColor = true;
+            this.bt_Salas.Location = new System.Drawing.Point(552, 12);
+            this.bt_Salas.Name = "bt_Salas";
+            this.bt_Salas.Size = new System.Drawing.Size(130, 23);
+            this.bt_Salas.TabIndex = 1;
+            this.bt_Salas.Text = "Salas";
+            this.bt_Salas.UseVisualStyleBackColor = true;
+            this.bt_Salas.Click += new System.EventHandler(this.bt_Salas_Click);
             // 
-            // bt_clientes
+            // bt_Equipamentos
             // 
-            this.bt_clientes.Location = new System.Drawing.Point(78, 88);
-            this.bt_clientes.Name = "bt_clientes";
-            this.bt_clientes.Size = new System.Drawing.Size(109, 23);
-            this.bt_clientes.TabIndex = 2;
-            this.bt_clientes.Text = "Busca clientes";
-            this.bt_clientes.UseVisualStyleBackColor = true;
-            this.bt_clientes.Click += new System.EventHandler(this.bt_clientes_Click);
+            this.bt_Equipamentos.Location = new System.Drawing.Point(198, 12);
+            this.bt_Equipamentos.Name = "bt_Equipamentos";
+            this.bt_Equipamentos.Size = new System.Drawing.Size(130, 23);
+            this.bt_Equipamentos.TabIndex = 3;
+            this.bt_Equipamentos.Text = "Equipamentos";
+            this.bt_Equipamentos.UseVisualStyleBackColor = true;
+            this.bt_Equipamentos.Click += new System.EventHandler(this.bt_Equipamentos_Click);
             // 
-            // bt_equipamentos
+            // bt_PopulaBanco
             // 
-            this.bt_equipamentos.Location = new System.Drawing.Point(66, 126);
-            this.bt_equipamentos.Name = "bt_equipamentos";
-            this.bt_equipamentos.Size = new System.Drawing.Size(130, 23);
-            this.bt_equipamentos.TabIndex = 3;
-            this.bt_equipamentos.Text = "Busca equipamentos";
-            this.bt_equipamentos.UseVisualStyleBackColor = true;
+            this.bt_PopulaBanco.Location = new System.Drawing.Point(458, 346);
+            this.bt_PopulaBanco.Name = "bt_PopulaBanco";
+            this.bt_PopulaBanco.Size = new System.Drawing.Size(115, 23);
+            this.bt_PopulaBanco.TabIndex = 13;
+            this.bt_PopulaBanco.Text = "Popula banco";
+            this.bt_PopulaBanco.UseVisualStyleBackColor = true;
+            this.bt_PopulaBanco.Click += new System.EventHandler(this.bt_PopulaBanco_Click);
             // 
-            // bt_inicia
+            // bt_TiposEquipamento
             // 
-            this.bt_inicia.Location = new System.Drawing.Point(95, 190);
-            this.bt_inicia.Name = "bt_inicia";
-            this.bt_inicia.Size = new System.Drawing.Size(75, 23);
-            this.bt_inicia.TabIndex = 4;
-            this.bt_inicia.Text = "Inicia";
-            this.bt_inicia.UseVisualStyleBackColor = true;
-            this.bt_inicia.Click += new System.EventHandler(this.bt_inicia_Click);
+            this.bt_TiposEquipamento.Location = new System.Drawing.Point(21, 12);
+            this.bt_TiposEquipamento.Name = "bt_TiposEquipamento";
+            this.bt_TiposEquipamento.Size = new System.Drawing.Size(130, 23);
+            this.bt_TiposEquipamento.TabIndex = 14;
+            this.bt_TiposEquipamento.Text = "Tipos de equipamento";
+            this.bt_TiposEquipamento.UseVisualStyleBackColor = true;
+            this.bt_TiposEquipamento.Click += new System.EventHandler(this.bt_TiposEquipamento_Click);
             // 
-            // bt_addReserva
+            // bt_TiposSala
             // 
-            this.bt_addReserva.Location = new System.Drawing.Point(298, 12);
-            this.bt_addReserva.Name = "bt_addReserva";
-            this.bt_addReserva.Size = new System.Drawing.Size(165, 23);
-            this.bt_addReserva.TabIndex = 5;
-            this.bt_addReserva.Text = "Add Reserva";
-            this.bt_addReserva.UseVisualStyleBackColor = true;
-            this.bt_addReserva.Click += new System.EventHandler(this.bt_addReserva_Click);
+            this.bt_TiposSala.Location = new System.Drawing.Point(375, 12);
+            this.bt_TiposSala.Name = "bt_TiposSala";
+            this.bt_TiposSala.Size = new System.Drawing.Size(130, 23);
+            this.bt_TiposSala.TabIndex = 15;
+            this.bt_TiposSala.Text = "Tipos de sala";
+            this.bt_TiposSala.UseVisualStyleBackColor = true;
+            this.bt_TiposSala.Click += new System.EventHandler(this.bt_TiposSala_Click);
             // 
-            // bt_addTipoSala
+            // bt_Clientes
             // 
-            this.bt_addTipoSala.Location = new System.Drawing.Point(298, 50);
-            this.bt_addTipoSala.Name = "bt_addTipoSala";
-            this.bt_addTipoSala.Size = new System.Drawing.Size(165, 23);
-            this.bt_addTipoSala.TabIndex = 6;
-            this.bt_addTipoSala.Text = "Add Tipo de Sala";
-            this.bt_addTipoSala.UseVisualStyleBackColor = true;
-            this.bt_addTipoSala.Click += new System.EventHandler(this.bt_addTipoSala_Click);
+            this.bt_Clientes.Location = new System.Drawing.Point(458, 276);
+            this.bt_Clientes.Name = "bt_Clientes";
+            this.bt_Clientes.Size = new System.Drawing.Size(130, 23);
+            this.bt_Clientes.TabIndex = 16;
+            this.bt_Clientes.Text = "Clientes";
+            this.bt_Clientes.UseVisualStyleBackColor = true;
             // 
-            // bt_addTipoEquipamento
+            // contextMenuStrip1
             // 
-            this.bt_addTipoEquipamento.Location = new System.Drawing.Point(298, 88);
-            this.bt_addTipoEquipamento.Name = "bt_addTipoEquipamento";
-            this.bt_addTipoEquipamento.Size = new System.Drawing.Size(165, 23);
-            this.bt_addTipoEquipamento.TabIndex = 7;
-            this.bt_addTipoEquipamento.Text = "Add Tipo de Equipamento";
-            this.bt_addTipoEquipamento.UseVisualStyleBackColor = true;
-            this.bt_addTipoEquipamento.Click += new System.EventHandler(this.bt_addTipoEquipamento_Click);
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
-            // bt_addEquipamento
+            // txtBox_TiposEquipamentos
             // 
-            this.bt_addEquipamento.Location = new System.Drawing.Point(298, 126);
-            this.bt_addEquipamento.Name = "bt_addEquipamento";
-            this.bt_addEquipamento.Size = new System.Drawing.Size(139, 23);
-            this.bt_addEquipamento.TabIndex = 8;
-            this.bt_addEquipamento.Text = "Add Equipamento";
-            this.bt_addEquipamento.UseVisualStyleBackColor = true;
-            this.bt_addEquipamento.Click += new System.EventHandler(this.bt_addEquipamento_Click);
+            this.txtBox_TiposEquipamentos.Location = new System.Drawing.Point(21, 41);
+            this.txtBox_TiposEquipamentos.Multiline = true;
+            this.txtBox_TiposEquipamentos.Name = "txtBox_TiposEquipamentos";
+            this.txtBox_TiposEquipamentos.Size = new System.Drawing.Size(171, 139);
+            this.txtBox_TiposEquipamentos.TabIndex = 19;
             // 
-            // bt_addSala
+            // txtBox_Equipamentos
             // 
-            this.bt_addSala.Location = new System.Drawing.Point(298, 168);
-            this.bt_addSala.Name = "bt_addSala";
-            this.bt_addSala.Size = new System.Drawing.Size(139, 23);
-            this.bt_addSala.TabIndex = 9;
-            this.bt_addSala.Text = "Add Sala";
-            this.bt_addSala.UseVisualStyleBackColor = true;
-            this.bt_addSala.Click += new System.EventHandler(this.bt_addSala_Click);
+            this.txtBox_Equipamentos.Location = new System.Drawing.Point(198, 41);
+            this.txtBox_Equipamentos.Multiline = true;
+            this.txtBox_Equipamentos.Name = "txtBox_Equipamentos";
+            this.txtBox_Equipamentos.Size = new System.Drawing.Size(171, 139);
+            this.txtBox_Equipamentos.TabIndex = 20;
             // 
-            // bt_addSalaEquipamento
+            // txtBox_TiposSala
             // 
-            this.bt_addSalaEquipamento.Location = new System.Drawing.Point(298, 206);
-            this.bt_addSalaEquipamento.Name = "bt_addSalaEquipamento";
-            this.bt_addSalaEquipamento.Size = new System.Drawing.Size(139, 23);
-            this.bt_addSalaEquipamento.TabIndex = 10;
-            this.bt_addSalaEquipamento.Text = "Add Sala Equipamento";
-            this.bt_addSalaEquipamento.UseVisualStyleBackColor = true;
-            this.bt_addSalaEquipamento.Click += new System.EventHandler(this.bt_addSalaEquipamento_Click);
+            this.txtBox_TiposSala.Location = new System.Drawing.Point(375, 41);
+            this.txtBox_TiposSala.Multiline = true;
+            this.txtBox_TiposSala.Name = "txtBox_TiposSala";
+            this.txtBox_TiposSala.Size = new System.Drawing.Size(171, 139);
+            this.txtBox_TiposSala.TabIndex = 21;
             // 
-            // bt_addLocalidade
+            // txtBox_Salas
             // 
-            this.bt_addLocalidade.Location = new System.Drawing.Point(298, 246);
-            this.bt_addLocalidade.Name = "bt_addLocalidade";
-            this.bt_addLocalidade.Size = new System.Drawing.Size(139, 23);
-            this.bt_addLocalidade.TabIndex = 11;
-            this.bt_addLocalidade.Text = "Add Localidade";
-            this.bt_addLocalidade.UseVisualStyleBackColor = true;
-            this.bt_addLocalidade.Click += new System.EventHandler(this.bt_addLocalidade_Click);
-            // 
-            // bt_addCliente
-            // 
-            this.bt_addCliente.Location = new System.Drawing.Point(298, 275);
-            this.bt_addCliente.Name = "bt_addCliente";
-            this.bt_addCliente.Size = new System.Drawing.Size(139, 23);
-            this.bt_addCliente.TabIndex = 12;
-            this.bt_addCliente.Text = "Add Cliente";
-            this.bt_addCliente.UseVisualStyleBackColor = true;
-            this.bt_addCliente.Click += new System.EventHandler(this.bt_addCliente_Click);
+            this.txtBox_Salas.Location = new System.Drawing.Point(552, 41);
+            this.txtBox_Salas.Multiline = true;
+            this.txtBox_Salas.Name = "txtBox_Salas";
+            this.txtBox_Salas.Size = new System.Drawing.Size(171, 139);
+            this.txtBox_Salas.TabIndex = 22;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(493, 350);
-            this.Controls.Add(this.bt_addCliente);
-            this.Controls.Add(this.bt_addLocalidade);
-            this.Controls.Add(this.bt_addSalaEquipamento);
-            this.Controls.Add(this.bt_addSala);
-            this.Controls.Add(this.bt_addEquipamento);
-            this.Controls.Add(this.bt_addTipoEquipamento);
-            this.Controls.Add(this.bt_addTipoSala);
-            this.Controls.Add(this.bt_addReserva);
-            this.Controls.Add(this.bt_inicia);
-            this.Controls.Add(this.bt_equipamentos);
-            this.Controls.Add(this.bt_clientes);
-            this.Controls.Add(this.bt_salas);
-            this.Controls.Add(this.bt_reservas);
+            this.ClientSize = new System.Drawing.Size(842, 442);
+            this.Controls.Add(this.txtBox_Salas);
+            this.Controls.Add(this.txtBox_TiposSala);
+            this.Controls.Add(this.txtBox_Equipamentos);
+            this.Controls.Add(this.txtBox_TiposEquipamentos);
+            this.Controls.Add(this.bt_Clientes);
+            this.Controls.Add(this.bt_TiposSala);
+            this.Controls.Add(this.bt_TiposEquipamento);
+            this.Controls.Add(this.bt_PopulaBanco);
+            this.Controls.Add(this.bt_Equipamentos);
+            this.Controls.Add(this.bt_Salas);
+            this.Controls.Add(this.bt_Reservas);
             this.Name = "Form1";
             this.Text = "Coworking Space";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Button bt_reservas;
-        private System.Windows.Forms.Button bt_salas;
-        private System.Windows.Forms.Button bt_clientes;
-        private System.Windows.Forms.Button bt_equipamentos;
-        private System.Windows.Forms.Button bt_inicia;
-        private System.Windows.Forms.Button bt_addReserva;
-        private System.Windows.Forms.Button bt_addTipoSala;
-        private System.Windows.Forms.Button bt_addTipoEquipamento;
-        private System.Windows.Forms.Button bt_addEquipamento;
-        private System.Windows.Forms.Button bt_addSala;
-        private System.Windows.Forms.Button bt_addSalaEquipamento;
-        private System.Windows.Forms.Button bt_addLocalidade;
-        private System.Windows.Forms.Button bt_addCliente;
+        private System.Windows.Forms.Button bt_Reservas;
+        private System.Windows.Forms.Button bt_Salas;
+        private System.Windows.Forms.Button bt_Equipamentos;
+        private System.Windows.Forms.Button bt_PopulaBanco;
+        private System.Windows.Forms.Button bt_TiposEquipamento;
+        private System.Windows.Forms.Button bt_TiposSala;
+        private System.Windows.Forms.Button bt_Clientes;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.TextBox txtBox_TiposEquipamentos;
+        private System.Windows.Forms.TextBox txtBox_Equipamentos;
+        private System.Windows.Forms.TextBox txtBox_TiposSala;
+        private System.Windows.Forms.TextBox txtBox_Salas;
     }
 }
 

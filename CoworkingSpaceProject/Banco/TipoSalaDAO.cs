@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Common;
 using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Linq;
@@ -12,6 +13,8 @@ namespace CoworkingSpaceProject.Banco
 {
     class TipoSalaDAO
     {
+        public static string NOME_TABELA = "tp_sala";
+
         public static void Add(tp_sala novoTpSala, SqlConnection conexaoSql)
         {
             string sql = "INSERT INTO tp_sala (cd_tp_sala, nm_tp_sala, tamanho) "
@@ -26,6 +29,34 @@ namespace CoworkingSpaceProject.Banco
 
             int rowCount = cmd.ExecuteNonQuery();
             Debug.Write("Linhas afetadas: " + rowCount);
+        }
+
+        internal static List<tp_sala> Busca(SqlConnection conexaoSql)
+        {
+            string sql = "SELECT * FROM " + NOME_TABELA;
+            SqlCommand cmd = conexaoSql.CreateCommand();
+            cmd.CommandText = sql;
+
+            List<tp_sala> tiposSala = new List<tp_sala>();
+            using (DbDataReader reader = cmd.ExecuteReader())
+            {
+                if (reader.HasRows)
+                {
+
+                    while (reader.Read())
+                    {
+                        tp_sala tpSala = new tp_sala();
+
+                        tpSala.cd_tp_sala = BancoUtils.buscaValor<int>(tp_sala.CD_TP_SALA, reader);
+                        tpSala.nm_tp_sala = BancoUtils.buscaValor<string>(tp_sala.NM_TP_SALA, reader);
+                        tpSala.tamanho = BancoUtils.buscaValor<int>(tp_sala.TAMANHO, reader);
+
+                        tiposSala.Add(tpSala);
+                    }
+                }
+            }
+
+            return tiposSala;
         }
     }
 }

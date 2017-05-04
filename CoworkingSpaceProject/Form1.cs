@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CoworkingSpaceProject.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -18,6 +19,7 @@ namespace CoworkingSpaceProject
 
         public Form1()
         {
+            _acessoBanco.IniciaBanco();
             InitializeComponent();
         }
 
@@ -26,54 +28,83 @@ namespace CoworkingSpaceProject
 
         }
 
-        private void bt_inicia_Click(object sender, EventArgs e)
-        {
-            _acessoBanco.IniciaBanco();
-        }
-
         private void bt_clientes_Click(object sender, EventArgs e)
         {
             _acessoBanco.BuscaClientes();
         }
 
-        private void bt_addTipoSala_Click(object sender, EventArgs e)
-        {
-            _acessoBanco.AddTipoSala();
-        }
-
-        private void bt_addTipoEquipamento_Click(object sender, EventArgs e)
+        private void bt_PopulaBanco_Click(object sender, EventArgs e)
         {
             _acessoBanco.AddTipoEquipamento();
-        }
-
-        private void bt_addEquipamento_Click(object sender, EventArgs e)
-        {
             _acessoBanco.AddEquipamento();
-        }
-
-        private void bt_addSala_Click(object sender, EventArgs e)
-        {
+            _acessoBanco.AddTipoSala();
             _acessoBanco.AddSala();
-        }
-
-        private void bt_addSalaEquipamento_Click(object sender, EventArgs e)
-        {
             _acessoBanco.AddSalaEquipamento();
-        }
-
-        private void bt_addLocalidade_Click(object sender, EventArgs e)
-        {
             _acessoBanco.AddLocalidade();
-        }
-
-        private void bt_addCliente_Click(object sender, EventArgs e)
-        {
             _acessoBanco.AddCliente();
+            _acessoBanco.AddReserva();
+            _acessoBanco.AddMulta();
         }
 
-        private void bt_addReserva_Click(object sender, EventArgs e)
+        private void bt_TiposEquipamento_Click(object sender, EventArgs e)
         {
-            _acessoBanco.AddReserva();
+            List<tp_equipamento> tiposEquipamento = _acessoBanco.BuscaTiposEquipamento();
+
+            string txt = "";
+            foreach (tp_equipamento tipo in tiposEquipamento)
+            {
+                txt += tipo.cd_tp_equipamento;
+                txt += " - ";
+                txt += tipo.nm_tp_equipamento;
+                txt += "\r\n";
+            }
+
+            txtBox_TiposEquipamentos.Clear();
+            txtBox_TiposEquipamentos.Text = txt;
+        }
+
+        private void bt_Equipamentos_Click(object sender, EventArgs e)
+        {
+            List<equipamento> equipamentos = _acessoBanco.BuscaEquipamentos();
+
+            string txt = "";
+            foreach (equipamento eq in equipamentos)
+            {
+                txt += eq.cd_equipamento;
+                txt += " - ";
+                //txt += eq.tp_equipamento.nm_tp_equipamento;
+                txt += eq.tp_equipamento.cd_tp_equipamento;
+                txt += " - ";
+                txt += eq.serie;
+                txt += "\r\n";
+            }
+
+            txtBox_Equipamentos.Clear();
+            txtBox_Equipamentos.Text = txt;
+        }
+
+        private void bt_TiposSala_Click(object sender, EventArgs e)
+        {
+            List<tp_sala> tiposSala = _acessoBanco.BuscaTiposSala();
+
+            string txt = "";
+            foreach (tp_sala obj in tiposSala)
+            {
+                txt += obj.cd_tp_sala;
+                txt += " - ";
+                txt += obj.nm_tp_sala;
+                txt += " - ";
+                txt += obj.tamanho;
+                txt += "\r\n";
+            }
+
+            txtBox_TiposSala.Clear();
+            txtBox_TiposSala.Text = txt;
+        }
+
+        private void bt_Salas_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
