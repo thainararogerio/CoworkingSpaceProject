@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Common;
 using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Linq;
@@ -12,6 +13,7 @@ namespace CoworkingSpaceProject.Banco
 {
     class SalaDAO
     {
+        public static string NOME_TABELA = "sala";
         public static void Add(sala novaSala, SqlConnection conexaoSql)
         {
             string sql = "INSERT INTO sala (" +
@@ -36,6 +38,35 @@ namespace CoworkingSpaceProject.Banco
 
             int rowCount = cmd.ExecuteNonQuery();
             Debug.Write("Linhas afetadas: " + rowCount);
+        }
+
+        internal static List<sala> Busca(SqlConnection conexaoSql)
+        {
+            string sql = "SELECT * FROM " + NOME_TABELA;
+            SqlCommand cmd = conexaoSql.CreateCommand();
+            cmd.CommandText = sql;
+
+            List<sala> salas = new List<sala>();
+            using (DbDataReader reader = cmd.ExecuteReader())
+            {
+                if (reader.HasRows)
+                {
+
+                    while (reader.Read())
+                    {
+                        sala sala = new sala();
+
+                        sala.cd_sala = BancoUtils.buscaValor<int>(sala.CD_SALA, reader);
+                        sala.nm_sala = BancoUtils.buscaValor<string>(sala.NM_SALA, reader);
+                        sala.observacao = BancoUtils.buscaValor<string>(sala.OBSERVACAO, reader);
+                        sala.tp_sala = new tp_sala() { cd_tp_sala = BancoUtils.buscaValor<int>(tp_sala.CD_TP_SALA, reader) };
+
+                        salas.Add(sala);
+                    }
+                }
+            }
+
+            return salas;
         }
     }
 }

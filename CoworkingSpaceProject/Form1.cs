@@ -15,6 +15,8 @@ namespace CoworkingSpaceProject
 {
     public partial class Form1 : Form
     {
+        private static string SEPARADOR_REGISTROS = ";";
+
         private readonly AcessoBanco _acessoBanco = new AcessoBanco(true);
 
         public Form1()
@@ -25,7 +27,12 @@ namespace CoworkingSpaceProject
 
         private void bt_PopulaBanco_Click(object sender, EventArgs e)
         {
-            _acessoBanco.AddTipoEquipamento();
+            if (_acessoBanco.BuscaEquipamentos().Count > 0)
+            {
+                MessageBox.Show("Banco já foi populado.");
+                return;
+            }
+
             _acessoBanco.AddEquipamento();
             _acessoBanco.AddTipoSala();
             _acessoBanco.AddSala();
@@ -34,33 +41,27 @@ namespace CoworkingSpaceProject
             _acessoBanco.AddCliente();
             _acessoBanco.AddReserva();
             _acessoBanco.AddMulta();
+
+            MessageBox.Show("Banco populado com sucesso.");
         }
 
         private void bt_reservas_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void bt_clientes_Click(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void bt_TiposEquipamento_Click(object sender, EventArgs e)
-        {
-            List<tp_equipamento> tiposEquipamento = _acessoBanco.BuscaTiposEquipamento();
+            List<reserva> reservas = _acessoBanco.BuscaReservas();
 
             string txt = "";
-            foreach (tp_equipamento tipo in tiposEquipamento)
+            foreach (reserva obj in reservas)
             {
-                txt += tipo.cd_tp_equipamento;
-                txt += " - ";
-                txt += tipo.nm_tp_equipamento;
+                txt += obj.cd_reserva;
+                txt += SEPARADOR_REGISTROS;
+                txt += obj.cd_sala;
+                txt += SEPARADOR_REGISTROS;
+                txt += obj.dt_entrada.ToString("dd-MM-yyyy HH:mm:ss");
                 txt += "\r\n";
             }
 
-            txtBox_TiposEquipamentos.Clear();
-            txtBox_TiposEquipamentos.Text = txt;
+            txtBox_Reservas.Clear();
+            txtBox_Reservas.Text = txt;
         }
 
         private void bt_Equipamentos_Click(object sender, EventArgs e)
@@ -71,11 +72,8 @@ namespace CoworkingSpaceProject
             foreach (equipamento eq in equipamentos)
             {
                 txt += eq.cd_equipamento;
-                txt += " - ";
-                //txt += eq.tp_equipamento.nm_tp_equipamento;
-                txt += eq.tp_equipamento.cd_tp_equipamento;
-                txt += " - ";
-                txt += eq.serie;
+                txt += SEPARADOR_REGISTROS;
+                txt += eq.nm_equipamento;
                 txt += "\r\n";
             }
 
@@ -91,9 +89,9 @@ namespace CoworkingSpaceProject
             foreach (tp_sala obj in tiposSala)
             {
                 txt += obj.cd_tp_sala;
-                txt += " - ";
+                txt += SEPARADOR_REGISTROS;
                 txt += obj.nm_tp_sala;
-                txt += " - ";
+                txt += SEPARADOR_REGISTROS;
                 txt += obj.tamanho;
                 txt += "\r\n";
             }
@@ -104,7 +102,40 @@ namespace CoworkingSpaceProject
 
         private void bt_Salas_Click(object sender, EventArgs e)
         {
+            List<sala> salas = _acessoBanco.BuscaSalas();
 
+            string txt = "";
+            foreach (sala obj in salas)
+            {
+                txt += obj.cd_sala;
+                txt += SEPARADOR_REGISTROS;
+                txt += obj.tp_sala.cd_tp_sala;
+                txt += SEPARADOR_REGISTROS;
+                txt += obj.nm_sala;
+                txt += "\r\n";
+            }
+
+            txtBox_Salas.Clear();
+            txtBox_Salas.Text = txt;
+        }
+
+        private void bt_Clientes_Click_1(object sender, EventArgs e)
+        {
+            List<cliente> clientes = _acessoBanco.BuscaClientes();
+
+            string txt = "";
+            foreach (cliente obj in clientes)
+            {
+                txt += obj.cd_cliente;
+                txt += SEPARADOR_REGISTROS;
+                txt += obj.nm_cliente;
+                txt += SEPARADOR_REGISTROS;
+                txt += obj.responsavel.cd_cliente;
+                txt += "\r\n";
+            }
+
+            txtBox_Clientes.Clear();
+            txtBox_Clientes.Text = txt;
         }
     }
 }

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Common;
 using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Linq;
@@ -35,6 +36,44 @@ namespace CoworkingSpaceProject.Banco
 
             int rowCount = cmd.ExecuteNonQuery();
             Debug.Write("Linhas afetadas: " + rowCount);
+        }
+
+        internal static List<reserva> Busca(SqlConnection conexaoSql)
+        {
+            string sql = "SELECT * FROM " + NOME_TABELA;
+            SqlCommand cmd = conexaoSql.CreateCommand();
+            cmd.CommandText = sql;
+
+            List<reserva> reservas = new List<reserva>();
+            using (DbDataReader reader = cmd.ExecuteReader())
+            {
+                if (reader.HasRows)
+                {
+
+                    while (reader.Read())
+                    {
+                        reserva reserva = new reserva();
+
+                        reserva.cd_reserva = BancoUtils.buscaValor<int>(reserva.CD_RESERVA, reader);
+                        reserva.cd_cliente = BancoUtils.buscaValor<int>(reserva.CD_CLIENTE, reader);
+                        reserva.cd_sala = BancoUtils.buscaValor<int>(reserva.CD_SALA, reader);
+                        reserva.dt_entrada = BancoUtils.buscaValor<DateTime>(reserva.DT_ENTRADA, reader);
+                        reserva.dt_saida = BancoUtils.buscaValor<DateTime>(reserva.DT_SAIDA, reader);
+
+                        int idx = reader.GetOrdinal(reserva.VL_RESERVA);
+                        var vl_reserva = reader.GetDecimal(idx);
+                        reserva.vl_reserva = float.Parse(vl_reserva.ToString());
+
+                        idx = reader.GetOrdinal(reserva.FL_PAGO);
+                        var flpago = reader.GetValue(idx);
+                        reserva.fl_pago = (string)flpago == "1";
+
+                        reservas.Add(reserva);
+                    }
+                }
+            }
+
+            return reservas;
         }
     }
 }

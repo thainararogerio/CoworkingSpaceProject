@@ -46,21 +46,9 @@ namespace CoworkingSpaceProject
             }
         }
 
-        internal void AddTipoEquipamento(tp_equipamento novoTpEquip = null)
+        internal List<reserva> BuscaReservas()
         {
-            if (_debug)
-            {
-                _preencheBancoUtils.AddTiposEquipamentos(_conexaoSql);
-            }
-            else
-            {
-                TipoEquipamentoDAO.Add(novoTpEquip, _conexaoSql);
-            }
-        }
-
-        internal List<tp_equipamento> BuscaTiposEquipamento()
-        {
-            return TipoEquipamentoDAO.Busca(_conexaoSql);
+            return ReservaDAO.Busca(_conexaoSql);
         }
 
         internal void AddMulta(multa novaMulta = null)
@@ -121,6 +109,11 @@ namespace CoworkingSpaceProject
             }
         }
 
+        internal List<sala> BuscaSalas()
+        {
+            return SalaDAO.Busca(_conexaoSql);
+        }
+
         internal void AddLocalidade(localidade novaLoc = null)
         {
             if (_debug)
@@ -157,42 +150,9 @@ namespace CoworkingSpaceProject
             }
         }
 
-        public void BuscaClientes()
+        public List<cliente> BuscaClientes()
         {
-            string sql = "SELECT * FROM cliente";
-
-            SqlCommand cmd = new SqlCommand();
-            cmd.Connection = _conexaoSql;
-            cmd.CommandText = sql;
-
-            using (DbDataReader reader = cmd.ExecuteReader())
-            {
-                if (reader.HasRows)
-                {
-
-                    while (reader.Read())
-                    {
-                        int cd_clienteIndex = reader.GetOrdinal("cd_cliente"); // 0
-                        long cd_cliente = Convert.ToInt64(reader.GetValue(cd_clienteIndex));
-
-                        int nm_clienteIndex = reader.GetOrdinal("nm_cliente");// 2
-                        string nm_cliente = reader.GetString(nm_clienteIndex);
-
-                        int nr_telefoneIndex = reader.GetOrdinal("nr_telefone");
-                        string nr_telefone = reader.GetString(nr_telefoneIndex);
-
-                        int enderecoIndex = reader.GetOrdinal("endereco");
-                        string endereco = reader.GetString(enderecoIndex);
-
-                        Debug.WriteLine("--------------------");
-                        Debug.WriteLine("cd_clienteIndex:" + cd_clienteIndex);
-                        Debug.WriteLine("cd_cliente:" + cd_cliente);
-                        Debug.WriteLine("nm_cliente:" + nm_cliente);
-                        Debug.WriteLine("nr_telefone:" + nr_telefone);
-                        Debug.WriteLine("endereco:" + endereco);
-                    }
-                }
-            }
+            return ClienteDAO.Busca(_conexaoSql);
         }
     }
 }

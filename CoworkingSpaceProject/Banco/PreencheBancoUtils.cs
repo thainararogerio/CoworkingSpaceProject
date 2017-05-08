@@ -7,36 +7,16 @@ namespace CoworkingSpaceProject
 {
     internal class PreencheBancoUtils
     {
-        internal void AddTiposEquipamentos(SqlConnection conexaoSql)
-        {
-            tp_equipamento tpEquipamento1 = new tp_equipamento() { cd_tp_equipamento = 1, nm_tp_equipamento = "Projetor" };
-            tp_equipamento tpEquipamento2 = new tp_equipamento() { cd_tp_equipamento = 2, nm_tp_equipamento = "Notebook" };
-            tp_equipamento tpEquipamento3 = new tp_equipamento() { cd_tp_equipamento = 3, nm_tp_equipamento = "Computador" };
-            tp_equipamento tpEquipamento4 = new tp_equipamento() { cd_tp_equipamento = 4, nm_tp_equipamento = "Caixas de som" };
-            TipoEquipamentoDAO.Add(tpEquipamento1, conexaoSql);
-            TipoEquipamentoDAO.Add(tpEquipamento2, conexaoSql);
-            TipoEquipamentoDAO.Add(tpEquipamento3, conexaoSql);
-            TipoEquipamentoDAO.Add(tpEquipamento4, conexaoSql);
-        }
-
         internal void AddEquipamentos(SqlConnection conexaoSql)
         {
-            equipamento equipamento1 = new equipamento() { cd_equipamento = 1, tp_equipamento = new tp_equipamento() { cd_tp_equipamento = 1 }, serie = "PJ1234567" };
-            equipamento equipamento2 = new equipamento() { cd_equipamento = 2, tp_equipamento = new tp_equipamento() { cd_tp_equipamento = 2 }, serie = "NB1234567" };
-            equipamento equipamento3 = new equipamento() { cd_equipamento = 3, tp_equipamento = new tp_equipamento() { cd_tp_equipamento = 3 }, serie = "PC1234567" };
-            equipamento equipamento4 = new equipamento() { cd_equipamento = 4, tp_equipamento = new tp_equipamento() { cd_tp_equipamento = 4 }, serie = "CS1234567" };
-            equipamento equipamento5 = new equipamento() { cd_equipamento = 5, tp_equipamento = new tp_equipamento() { cd_tp_equipamento = 1 }, serie = "PJ1234568" };
-            equipamento equipamento6 = new equipamento() { cd_equipamento = 6, tp_equipamento = new tp_equipamento() { cd_tp_equipamento = 2 }, serie = "NB1234568" };
-            equipamento equipamento7 = new equipamento() { cd_equipamento = 7, tp_equipamento = new tp_equipamento() { cd_tp_equipamento = 3 }, serie = "PC1234568" };
-            equipamento equipamento8 = new equipamento() { cd_equipamento = 8, tp_equipamento = new tp_equipamento() { cd_tp_equipamento = 4 }, serie = "CS1234568" };
+            equipamento equipamento1 = new equipamento() { cd_equipamento = 1, nm_equipamento = "Projetor" };
+            equipamento equipamento2 = new equipamento() { cd_equipamento = 2, nm_equipamento = "Notebook" };
+            equipamento equipamento3 = new equipamento() { cd_equipamento = 3, nm_equipamento = "Caixa de Som" };
+            equipamento equipamento4 = new equipamento() { cd_equipamento = 4, nm_equipamento = "Computador" };
             EquipamentoDAO.Add(equipamento1, conexaoSql);
             EquipamentoDAO.Add(equipamento2, conexaoSql);
             EquipamentoDAO.Add(equipamento3, conexaoSql);
             EquipamentoDAO.Add(equipamento4, conexaoSql);
-            EquipamentoDAO.Add(equipamento5, conexaoSql);
-            EquipamentoDAO.Add(equipamento6, conexaoSql);
-            EquipamentoDAO.Add(equipamento7, conexaoSql);
-            EquipamentoDAO.Add(equipamento8, conexaoSql);
         }
 
         
@@ -67,11 +47,11 @@ namespace CoworkingSpaceProject
         internal void AddSalaEquipamentos(SqlConnection conexaoSql)
         {
             //sala 1 - 1 projetor, 2 notebooks, 1 pc e 1 conjunto de caixas de som.
-            sala_equipamento salaEquip1 = new sala_equipamento() { equipamento = new equipamento() { cd_equipamento = 1 }, sala = new sala() { cd_sala = 1 } };//projetor
-            sala_equipamento salaEquip2 = new sala_equipamento() { equipamento = new equipamento() { cd_equipamento = 2 }, sala = new sala() { cd_sala = 1 } };//notebook
-            sala_equipamento salaEquip3 = new sala_equipamento() { equipamento = new equipamento() { cd_equipamento = 6 }, sala = new sala() { cd_sala = 1 } };//notebook
-            sala_equipamento salaEquip4 = new sala_equipamento() { equipamento = new equipamento() { cd_equipamento = 3 }, sala = new sala() { cd_sala = 1 } };//pc
-            sala_equipamento salaEquip5 = new sala_equipamento() { equipamento = new equipamento() { cd_equipamento = 4 }, sala = new sala() { cd_sala = 1 } };//caixa som
+            sala_equipamento salaEquip1 = new sala_equipamento() { equipamento = new equipamento() { cd_equipamento = 1 }, sala = new sala() { cd_sala = 1 }, dt_recebido = new DateTime(2017, 01, 03, 01, 00, 00) };//projetor
+            sala_equipamento salaEquip2 = new sala_equipamento() { equipamento = new equipamento() { cd_equipamento = 2 }, sala = new sala() { cd_sala = 1 }, dt_recebido = new DateTime(2017, 02, 03, 02, 00, 00) };//notebook
+            sala_equipamento salaEquip3 = new sala_equipamento() { equipamento = new equipamento() { cd_equipamento = 3 }, sala = new sala() { cd_sala = 1 }, dt_recebido = new DateTime(2017, 03, 03, 03, 00, 00) };//notebook
+            sala_equipamento salaEquip4 = new sala_equipamento() { equipamento = new equipamento() { cd_equipamento = 4 }, sala = new sala() { cd_sala = 1 }, dt_recebido = new DateTime(2017, 04, 03, 04, 00, 00) };//pc
+            sala_equipamento salaEquip5 = new sala_equipamento() { equipamento = new equipamento() { cd_equipamento = 1 }, sala = new sala() { cd_sala = 2 }, dt_recebido = new DateTime(2017, 05, 03, 05, 00, 00) };//caixa som
             SalaEquipamentoDAO.Add(salaEquip1, conexaoSql);
             SalaEquipamentoDAO.Add(salaEquip2, conexaoSql);
             SalaEquipamentoDAO.Add(salaEquip3, conexaoSql);

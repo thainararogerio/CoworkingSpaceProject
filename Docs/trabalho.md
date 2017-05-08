@@ -70,6 +70,50 @@ create table cliente
 	ds_email varchar(50)
 );
 
+create table reserva
+(
+	cd_reserva int not null primary key,
+	cd_cliente int not null references cliente(cd_cliente),
+	cd_sala int not null references sala(cd_sala),
+	dt_entrada datetime,
+	dt_saida datetime,
+	vl_reserva numeric(8,2),
+	fl_pago char(1)
+);
+
+create table multa
+(
+	cd_multa int not null primary key,
+	cd_reserva int not null references reserva(cd_reserva),
+	vl_multa numeric(8,2),
+	dt_pagto datetime
+);
+
+delete from equipamento
+delete from sala
+delete from tp_sala
+delete from sala_equipamento
+delete from localidade
+delete from cliente
+delete from reserva
+delete from multa
+
+select * from equipamento
+select * from sala
+select * from tp_sala
+select * from sala_equipamento
+select * from localidade
+select * from cliente
+select * from reserva
+select * from multa
+
+select * from reserva
+where cd_sala = 1
+and '2017-01-01 20:00:00.000' between dt_entrada and dt_saida
+
+INSERT INTO sala_equipamento (cd_sala, cd_equipamento, dt_recebido)  
+values (@cd_sala, @cd_equipamento, dt_recebido) 
+
 
 Funcionalidades:
 1. Cadastros
@@ -87,8 +131,8 @@ Funcionalidades:
 
 2.1: 
 select * from reserva
-where cd_sala = codi_sala
-and data_info between dt_entrada and dt_saida
+where cd_sala = 1
+and '2017-01-01 20:00:00.000' between dt_entrada and dt_saida
 2.2:
 select * 
 from sala
@@ -112,10 +156,10 @@ and reserva.cd_sala = codi_sala)
 select * from reserva
 where cd_cliente = codi_cliente
 2.6:
-select cd_reserva, cd_sala, dt_entrada, dt_saida, vl_pago, cliente.nm_cliente
+select cd_reserva, cd_sala, dt_entrada, dt_saida, fl_pago, cliente.nm_cliente
 from reserva, cliente
-group by cd_cliente
-having fl_pago = 0 
+group by reserva.cd_cliente, cliente.cd_cliente, fl_pago, cd_reserva, cd_sala, dt_entrada, dt_saida, nm_cliente
+having fl_pago = 1 
 and reserva.cd_cliente = cliente.cd_cliente
 2.7:
 

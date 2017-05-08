@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Common;
 using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Linq;
@@ -12,6 +13,7 @@ namespace CoworkingSpaceProject.Banco
 {
     class ClienteDAO
     {
+        public static string NOME_TABELA = "cliente";
         public static void Add(cliente novoCliente, SqlConnection conexaoSql)
         {
             string sql = "INSERT INTO cliente (" +
@@ -92,6 +94,44 @@ namespace CoworkingSpaceProject.Banco
 
             int rowCount = cmd.ExecuteNonQuery();
             Debug.Write("Linhas afetadas: " + rowCount);
+        }
+
+        internal static List<cliente> Busca(SqlConnection conexaoSql)
+        {
+            string sql = "SELECT * FROM " + NOME_TABELA;
+            SqlCommand cmd = conexaoSql.CreateCommand();
+            cmd.CommandText = sql;
+
+            List<cliente> clientes = new List<cliente>();
+            using (DbDataReader reader = cmd.ExecuteReader())
+            {
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        cliente cliente = new cliente();
+
+                        cliente.cd_cliente = BancoUtils.buscaValor<int>(cliente.CD_CLIENTE, reader);
+                        cliente.localidade = new localidade() { nr_localidade = BancoUtils.buscaValor<int>(localidade.NR_LOCALIDADE, reader) };
+                        cliente.responsavel = new cliente() { cd_cliente = BancoUtils.buscaValor<int>("cd_responsavel", reader) };
+                        cliente.nm_cliente = BancoUtils.buscaValor<string>(cliente.NM_CLIENTE, reader);
+
+                        cliente.ds_logradouro = BancoUtils.buscaValor<string>(cliente.DS_LOGRADOURO, reader);
+                        cliente.ds_complemento = BancoUtils.buscaValor<string>(cliente.DS_COMPLEMENTO, reader);
+                        cliente.ds_bairro = BancoUtils.buscaValor<string>(cliente.DS_BAIRRO, reader);
+                        
+                        cliente.nr_telefone_res = BancoUtils.buscaValor<string>(cliente.NR_TELEFONE_RES, reader);
+                        cliente.nr_telefone_com = BancoUtils.buscaValor<string>(cliente.NR_TELEFONE_COM, reader);
+                        cliente.nr_telefone_cel = BancoUtils.buscaValor<string>(cliente.NR_TELEFONE_CEL, reader);
+
+                        cliente.ds_email = BancoUtils.buscaValor<string>(cliente.DS_EMAIL, reader);
+
+                        clientes.Add(cliente);
+                    }
+                }
+            }
+
+            return clientes;
         }
     }
 }
