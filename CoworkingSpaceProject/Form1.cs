@@ -23,16 +23,6 @@ namespace CoworkingSpaceProject
             InitializeComponent();
         }
 
-        private void bt_reservas_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void bt_clientes_Click(object sender, EventArgs e)
-        {
-            _acessoBanco.BuscaClientes();
-        }
-
         private void bt_PopulaBanco_Click(object sender, EventArgs e)
         {
             _acessoBanco.AddTipoEquipamento();
@@ -44,6 +34,16 @@ namespace CoworkingSpaceProject
             _acessoBanco.AddCliente();
             _acessoBanco.AddReserva();
             _acessoBanco.AddMulta();
+        }
+
+        private void bt_reservas_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void bt_clientes_Click(object sender, EventArgs e)
+        {
+            
         }
 
         private void bt_TiposEquipamento_Click(object sender, EventArgs e)
