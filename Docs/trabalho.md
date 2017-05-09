@@ -89,105 +89,6 @@ create table multa
 	dt_pagto datetime
 );
 
-delete from equipamento
-delete from sala
-delete from tp_sala
-delete from sala_equipamento
-delete from localidade
-delete from cliente
-delete from reserva
-delete from multa
-
-select * from equipamento
-select * from sala
-select * from tp_sala
-select * from sala_equipamento
-select * from localidade
-select * from cliente
-select * from reserva
-select * from multa
-
-select * from reserva
-where cd_sala = 1
-and '2017-01-01 20:00:00.000' between dt_entrada and dt_saida
-
-INSERT INTO sala_equipamento (cd_sala, cd_equipamento, dt_recebido)  
-values (@cd_sala, @cd_equipamento, dt_recebido) 
-
-
-Funcionalidades:
-1. Cadastros
-2. Relatórios:
- 2.1: Reservas de determinada sala em certa data/hora.
- 2.2: Salas livres em certa data/hora.
- 2.3: Salas com certo equipamento.
- 2.4: Clientes que utilizaram a sala na data e hora determinados
- 2.5: Reservas de determinado cliente.
- 2.6: Reservas não pagas e o nome do seu cliente, agrupadas por cliente.
- 2.7: 
- 2.8:
- 2.9:
- 2.10:
-
-2.1: 
-select * from reserva
-where cd_sala = 1
-and '2017-01-01 20:00:00.000' between dt_entrada and dt_saida
-2.2:
-select * 
-from sala
-where cd_sala not in
-(select cd_sala from reserva
-where data_info between dt_entrada and dt_saida)
-2.3:
-select * 
-from sala, sala_equipamento
-where sala.cd_sala = sala_equipamento.cd_sala
-and sala_equipamento.cd_equipamento = codi_equi
-2.4:
-select * 
-from cliente
-where cd_cliente in
-(select cd_cliente 
-from cliente, reserva
-where data_info between reserva.dt_entrada and reserva.dt_saida
-and reserva.cd_sala = codi_sala)
-2.5:
-select * from reserva
-where cd_cliente = codi_cliente
-2.6:
-select cd_reserva, cd_sala, dt_entrada, dt_saida, fl_pago, cliente.nm_cliente
-from reserva, cliente
-group by reserva.cd_cliente, cliente.cd_cliente, fl_pago, cd_reserva, cd_sala, dt_entrada, dt_saida, nm_cliente
-having fl_pago = 1 
-and reserva.cd_cliente = cliente.cd_cliente
-2.7:
-
-2.8:
-2.9:
-2.10:
-
-
-create table reserva
-(
-	cd_reserva int not null primary key,
-	cd_cliente int not null references cliente(cd_cliente),
-	cd_sala int not null references sala(cd_sala),
-	dt_entrada datetime,
-	dt_saida datetime,
-	vl_reserva numeric(8,2),
-	fl_pago char(1)
-);
-
-create table multa
-(
-	cd_multa int not null primary key,
-	cd_reserva int not null references reserva(cd_reserva),
-	vl_multa numeric(8,2),
-	dt_pagto datetime
-);
-
-select * from tp_equipamento
 select * from equipamento
 select * from tp_sala
 select * from sala
@@ -198,6 +99,7 @@ select * from cliente
 select * from reserva
 
 select * from multa
+
 
 
 Objetivo: informatizar estabelecimentos

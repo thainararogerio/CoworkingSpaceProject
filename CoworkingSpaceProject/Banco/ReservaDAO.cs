@@ -24,17 +24,19 @@ namespace CoworkingSpaceProject.Banco
             SqlCommand cmd = conexaoSql.CreateCommand();
             cmd.CommandText = sql;
 
-            cmd.Parameters.Add(BancoUtils.criaParametro<int>(reserva.CD_RESERVA, novaReserva.cd_reserva, SqlDbType.Int));
-            cmd.Parameters.Add(BancoUtils.criaParametro<int>(reserva.CD_CLIENTE, novaReserva.cd_cliente, SqlDbType.Int));
-            cmd.Parameters.Add(BancoUtils.criaParametro<int>(reserva.CD_SALA, novaReserva.cd_sala, SqlDbType.Int));
+            cmd.Parameters.Add(DBUtils.criaParametro<int>(reserva.CD_RESERVA, novaReserva.cd_reserva, SqlDbType.Int));
+            cmd.Parameters.Add(DBUtils.criaParametro<int>(reserva.CD_CLIENTE, novaReserva.cd_cliente, SqlDbType.Int));
+            cmd.Parameters.Add(DBUtils.criaParametro<int>(reserva.CD_SALA, novaReserva.cd_sala, SqlDbType.Int));
 
-            cmd.Parameters.Add(BancoUtils.criaParametro<string>(reserva.DT_ENTRADA, novaReserva.dt_entrada.ToString("yyyy-MM-ddTHH:mm:ss"), SqlDbType.DateTime));
-            cmd.Parameters.Add(BancoUtils.criaParametro<string>(reserva.DT_SAIDA, novaReserva.dt_saida.ToString("yyyy-MM-ddTHH:mm:ss"), SqlDbType.DateTime));
+            cmd.Parameters.Add(DBUtils.criaParametro<string>(reserva.DT_ENTRADA, novaReserva.dt_entrada.ToString("yyyy-MM-ddTHH:mm:ss"), SqlDbType.DateTime));
+            cmd.Parameters.Add(DBUtils.criaParametro<string>(reserva.DT_SAIDA, novaReserva.dt_saida.ToString("yyyy-MM-ddTHH:mm:ss"), SqlDbType.DateTime));
 
-            cmd.Parameters.Add(BancoUtils.criaParametro<float>(reserva.VL_RESERVA, novaReserva.vl_reserva, SqlDbType.Float));
-            cmd.Parameters.Add(BancoUtils.criaParametro<char>(reserva.FL_PAGO, novaReserva.fl_pago ? '1' : '0', SqlDbType.Char));
+            cmd.Parameters.Add(DBUtils.criaParametro<float>(reserva.VL_RESERVA, novaReserva.vl_reserva, SqlDbType.Float));
+            cmd.Parameters.Add(DBUtils.criaParametro<char>(reserva.FL_PAGO, novaReserva.fl_pago ? '1' : '0', SqlDbType.Char));
 
             int rowCount = cmd.ExecuteNonQuery();
+            AcessoBanco.comandosSqlExecutados += DBUtils.MontaComandoSql(cmd) + "\r\n";
+
             Debug.Write("Linhas afetadas: " + rowCount);
         }
 
@@ -43,6 +45,8 @@ namespace CoworkingSpaceProject.Banco
             string sql = "SELECT * FROM " + NOME_TABELA;
             SqlCommand cmd = conexaoSql.CreateCommand();
             cmd.CommandText = sql;
+
+            AcessoBanco.comandosSqlExecutados += sql + "\n";
 
             List<reserva> reservas = new List<reserva>();
             using (DbDataReader reader = cmd.ExecuteReader())
@@ -54,11 +58,11 @@ namespace CoworkingSpaceProject.Banco
                     {
                         reserva reserva = new reserva();
 
-                        reserva.cd_reserva = BancoUtils.buscaValor<int>(reserva.CD_RESERVA, reader);
-                        reserva.cd_cliente = BancoUtils.buscaValor<int>(reserva.CD_CLIENTE, reader);
-                        reserva.cd_sala = BancoUtils.buscaValor<int>(reserva.CD_SALA, reader);
-                        reserva.dt_entrada = BancoUtils.buscaValor<DateTime>(reserva.DT_ENTRADA, reader);
-                        reserva.dt_saida = BancoUtils.buscaValor<DateTime>(reserva.DT_SAIDA, reader);
+                        reserva.cd_reserva = DBUtils.buscaValor<int>(reserva.CD_RESERVA, reader);
+                        reserva.cd_cliente = DBUtils.buscaValor<int>(reserva.CD_CLIENTE, reader);
+                        reserva.cd_sala = DBUtils.buscaValor<int>(reserva.CD_SALA, reader);
+                        reserva.dt_entrada = DBUtils.buscaValor<DateTime>(reserva.DT_ENTRADA, reader);
+                        reserva.dt_saida = DBUtils.buscaValor<DateTime>(reserva.DT_SAIDA, reader);
 
                         int idx = reader.GetOrdinal(reserva.VL_RESERVA);
                         var vl_reserva = reader.GetDecimal(idx);

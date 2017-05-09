@@ -41,6 +41,8 @@
             this.txtBox_Salas = new System.Windows.Forms.TextBox();
             this.txtBox_Clientes = new System.Windows.Forms.TextBox();
             this.txtBox_Reservas = new System.Windows.Forms.TextBox();
+            this.txtBox_ComandosSQL = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // bt_Reservas
@@ -110,6 +112,7 @@
             // 
             // txtBox_Equipamentos
             // 
+            this.txtBox_Equipamentos.Enabled = false;
             this.txtBox_Equipamentos.Location = new System.Drawing.Point(12, 40);
             this.txtBox_Equipamentos.Multiline = true;
             this.txtBox_Equipamentos.Name = "txtBox_Equipamentos";
@@ -118,6 +121,7 @@
             // 
             // txtBox_TiposSala
             // 
+            this.txtBox_TiposSala.Enabled = false;
             this.txtBox_TiposSala.Location = new System.Drawing.Point(189, 40);
             this.txtBox_TiposSala.Multiline = true;
             this.txtBox_TiposSala.Name = "txtBox_TiposSala";
@@ -126,6 +130,7 @@
             // 
             // txtBox_Salas
             // 
+            this.txtBox_Salas.Enabled = false;
             this.txtBox_Salas.Location = new System.Drawing.Point(366, 40);
             this.txtBox_Salas.Multiline = true;
             this.txtBox_Salas.Name = "txtBox_Salas";
@@ -134,6 +139,7 @@
             // 
             // txtBox_Clientes
             // 
+            this.txtBox_Clientes.Enabled = false;
             this.txtBox_Clientes.Location = new System.Drawing.Point(12, 213);
             this.txtBox_Clientes.Multiline = true;
             this.txtBox_Clientes.Name = "txtBox_Clientes";
@@ -142,17 +148,41 @@
             // 
             // txtBox_Reservas
             // 
+            this.txtBox_Reservas.Enabled = false;
             this.txtBox_Reservas.Location = new System.Drawing.Point(189, 213);
             this.txtBox_Reservas.Multiline = true;
             this.txtBox_Reservas.Name = "txtBox_Reservas";
             this.txtBox_Reservas.Size = new System.Drawing.Size(171, 139);
             this.txtBox_Reservas.TabIndex = 24;
             // 
+            // txtBox_ComandosSQL
+            // 
+            this.txtBox_ComandosSQL.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtBox_ComandosSQL.Location = new System.Drawing.Point(543, 40);
+            this.txtBox_ComandosSQL.Multiline = true;
+            this.txtBox_ComandosSQL.Name = "txtBox_ComandosSQL";
+            this.txtBox_ComandosSQL.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtBox_ComandosSQL.Size = new System.Drawing.Size(436, 390);
+            this.txtBox_ComandosSQL.TabIndex = 25;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(543, 21);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(142, 13);
+            this.label1.TabIndex = 26;
+            this.label1.Text = "Comandos SQL executados:";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(551, 442);
+            this.ClientSize = new System.Drawing.Size(991, 442);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.txtBox_ComandosSQL);
             this.Controls.Add(this.txtBox_Reservas);
             this.Controls.Add(this.txtBox_Clientes);
             this.Controls.Add(this.txtBox_Salas);
@@ -185,6 +215,8 @@
         private System.Windows.Forms.TextBox txtBox_Salas;
         private System.Windows.Forms.TextBox txtBox_Clientes;
         private System.Windows.Forms.TextBox txtBox_Reservas;
+        private System.Windows.Forms.TextBox txtBox_ComandosSQL;
+        private System.Windows.Forms.Label label1;
     }
 }
 

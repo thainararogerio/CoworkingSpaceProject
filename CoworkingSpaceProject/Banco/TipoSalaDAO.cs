@@ -23,11 +23,13 @@ namespace CoworkingSpaceProject.Banco
             SqlCommand cmd = conexaoSql.CreateCommand();
             cmd.CommandText = sql;
 
-            cmd.Parameters.Add(BancoUtils.criaParametro<int>(tp_sala.CD_TP_SALA, novoTpSala.cd_tp_sala, SqlDbType.Int));
-            cmd.Parameters.Add(BancoUtils.criaParametro<string>(tp_sala.NM_TP_SALA, novoTpSala.nm_tp_sala, SqlDbType.VarChar));
-            cmd.Parameters.Add(BancoUtils.criaParametro<int>(tp_sala.TAMANHO, novoTpSala.tamanho, SqlDbType.Int));
+            cmd.Parameters.Add(DBUtils.criaParametro<int>(tp_sala.CD_TP_SALA, novoTpSala.cd_tp_sala, SqlDbType.Int));
+            cmd.Parameters.Add(DBUtils.criaParametro<string>(tp_sala.NM_TP_SALA, novoTpSala.nm_tp_sala, SqlDbType.VarChar));
+            cmd.Parameters.Add(DBUtils.criaParametro<int>(tp_sala.TAMANHO, novoTpSala.tamanho, SqlDbType.Int));
 
             int rowCount = cmd.ExecuteNonQuery();
+            AcessoBanco.comandosSqlExecutados += DBUtils.MontaComandoSql(cmd) + "\r\n";
+
             Debug.Write("Linhas afetadas: " + rowCount);
         }
 
@@ -47,9 +49,9 @@ namespace CoworkingSpaceProject.Banco
                     {
                         tp_sala tpSala = new tp_sala();
 
-                        tpSala.cd_tp_sala = BancoUtils.buscaValor<int>(tp_sala.CD_TP_SALA, reader);
-                        tpSala.nm_tp_sala = BancoUtils.buscaValor<string>(tp_sala.NM_TP_SALA, reader);
-                        tpSala.tamanho = BancoUtils.buscaValor<int>(tp_sala.TAMANHO, reader);
+                        tpSala.cd_tp_sala = DBUtils.buscaValor<int>(tp_sala.CD_TP_SALA, reader);
+                        tpSala.nm_tp_sala = DBUtils.buscaValor<string>(tp_sala.NM_TP_SALA, reader);
+                        tpSala.tamanho = DBUtils.buscaValor<int>(tp_sala.TAMANHO, reader);
 
                         tiposSala.Add(tpSala);
                     }

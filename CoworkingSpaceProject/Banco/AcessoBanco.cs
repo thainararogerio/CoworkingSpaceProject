@@ -16,6 +16,7 @@ namespace CoworkingSpaceProject
         private readonly SqlConnection _conexaoSql = DBUtils.GetDBConnection();
         private bool _debug;
         private PreencheBancoUtils _preencheBancoUtils = new PreencheBancoUtils();
+        public static string comandosSqlExecutados;
 
         public AcessoBanco(bool debug)
         {
@@ -75,6 +76,7 @@ namespace CoworkingSpaceProject
             }
         }
 
+        
         internal List<equipamento> BuscaEquipamentos()
         {
             return EquipamentoDAO.Busca(_conexaoSql);

@@ -31,12 +31,14 @@ namespace CoworkingSpaceProject.Banco
             SqlCommand cmd = conexaoSql.CreateCommand();
             cmd.CommandText = sql;
 
-            cmd.Parameters.Add(BancoUtils.criaParametro<int>(sala.CD_SALA, novaSala.cd_sala, SqlDbType.Int));
-            cmd.Parameters.Add(BancoUtils.criaParametro<int>(tp_sala.CD_TP_SALA, novaSala.tp_sala.cd_tp_sala, SqlDbType.Int));
-            cmd.Parameters.Add(BancoUtils.criaParametro<string>(sala.NM_SALA, novaSala.nm_sala, SqlDbType.VarChar));
-            cmd.Parameters.Add(BancoUtils.criaParametro<string>(sala.OBSERVACAO, novaSala.observacao, SqlDbType.VarChar));
+            cmd.Parameters.Add(DBUtils.criaParametro<int>(sala.CD_SALA, novaSala.cd_sala, SqlDbType.Int));
+            cmd.Parameters.Add(DBUtils.criaParametro<int>(tp_sala.CD_TP_SALA, novaSala.tp_sala.cd_tp_sala, SqlDbType.Int));
+            cmd.Parameters.Add(DBUtils.criaParametro<string>(sala.NM_SALA, novaSala.nm_sala, SqlDbType.VarChar));
+            cmd.Parameters.Add(DBUtils.criaParametro<string>(sala.OBSERVACAO, novaSala.observacao, SqlDbType.VarChar));
 
             int rowCount = cmd.ExecuteNonQuery();
+            AcessoBanco.comandosSqlExecutados += DBUtils.MontaComandoSql(cmd) + "\r\n";
+
             Debug.Write("Linhas afetadas: " + rowCount);
         }
 
@@ -56,10 +58,10 @@ namespace CoworkingSpaceProject.Banco
                     {
                         sala sala = new sala();
 
-                        sala.cd_sala = BancoUtils.buscaValor<int>(sala.CD_SALA, reader);
-                        sala.nm_sala = BancoUtils.buscaValor<string>(sala.NM_SALA, reader);
-                        sala.observacao = BancoUtils.buscaValor<string>(sala.OBSERVACAO, reader);
-                        sala.tp_sala = new tp_sala() { cd_tp_sala = BancoUtils.buscaValor<int>(tp_sala.CD_TP_SALA, reader) };
+                        sala.cd_sala = DBUtils.buscaValor<int>(sala.CD_SALA, reader);
+                        sala.nm_sala = DBUtils.buscaValor<string>(sala.NM_SALA, reader);
+                        sala.observacao = DBUtils.buscaValor<string>(sala.OBSERVACAO, reader);
+                        sala.tp_sala = new tp_sala() { cd_tp_sala = DBUtils.buscaValor<int>(tp_sala.CD_TP_SALA, reader) };
 
                         salas.Add(sala);
                     }

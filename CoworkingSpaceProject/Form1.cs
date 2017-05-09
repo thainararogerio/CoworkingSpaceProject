@@ -25,6 +25,12 @@ namespace CoworkingSpaceProject
             InitializeComponent();
         }
 
+        private void atualizaTextoComandosSQLExecutados()
+        {
+            txtBox_ComandosSQL.Clear();
+            txtBox_ComandosSQL.Text = AcessoBanco.comandosSqlExecutados;
+        }
+
         private void bt_PopulaBanco_Click(object sender, EventArgs e)
         {
             if (_acessoBanco.BuscaEquipamentos().Count > 0)
@@ -43,6 +49,7 @@ namespace CoworkingSpaceProject
             _acessoBanco.AddMulta();
 
             MessageBox.Show("Banco populado com sucesso.");
+            atualizaTextoComandosSQLExecutados();
         }
 
         private void bt_reservas_Click(object sender, EventArgs e)
@@ -62,6 +69,7 @@ namespace CoworkingSpaceProject
 
             txtBox_Reservas.Clear();
             txtBox_Reservas.Text = txt;
+            atualizaTextoComandosSQLExecutados();
         }
 
         private void bt_Equipamentos_Click(object sender, EventArgs e)
@@ -79,6 +87,7 @@ namespace CoworkingSpaceProject
 
             txtBox_Equipamentos.Clear();
             txtBox_Equipamentos.Text = txt;
+            atualizaTextoComandosSQLExecutados();
         }
 
         private void bt_TiposSala_Click(object sender, EventArgs e)
@@ -98,6 +107,7 @@ namespace CoworkingSpaceProject
 
             txtBox_TiposSala.Clear();
             txtBox_TiposSala.Text = txt;
+            atualizaTextoComandosSQLExecutados();
         }
 
         private void bt_Salas_Click(object sender, EventArgs e)
@@ -117,6 +127,7 @@ namespace CoworkingSpaceProject
 
             txtBox_Salas.Clear();
             txtBox_Salas.Text = txt;
+            atualizaTextoComandosSQLExecutados();
         }
 
         private void bt_Clientes_Click_1(object sender, EventArgs e)
@@ -136,6 +147,7 @@ namespace CoworkingSpaceProject
 
             txtBox_Clientes.Clear();
             txtBox_Clientes.Text = txt;
+            atualizaTextoComandosSQLExecutados();
         }
     }
 }

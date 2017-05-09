@@ -20,11 +20,13 @@ namespace CoworkingSpaceProject.Banco
             SqlCommand cmd = conexaoSql.CreateCommand();
             cmd.CommandText = sql;
 
-            cmd.Parameters.Add(BancoUtils.criaParametro<int>(sala.CD_SALA, novoSalaEquipamento.sala.cd_sala, SqlDbType.Int));
-            cmd.Parameters.Add(BancoUtils.criaParametro<int>(equipamento.CD_EQUIPAMENTO, novoSalaEquipamento.equipamento.cd_equipamento, SqlDbType.Int));
-            cmd.Parameters.Add(BancoUtils.criaParametro<string>(sala_equipamento.DT_RECEBIDO, novoSalaEquipamento.dt_recebido.ToString("yyyy-MM-ddTHH:mm:ss"), SqlDbType.DateTime));
+            cmd.Parameters.Add(DBUtils.criaParametro<int>(sala.CD_SALA, novoSalaEquipamento.sala.cd_sala, SqlDbType.Int));
+            cmd.Parameters.Add(DBUtils.criaParametro<int>(equipamento.CD_EQUIPAMENTO, novoSalaEquipamento.equipamento.cd_equipamento, SqlDbType.Int));
+            cmd.Parameters.Add(DBUtils.criaParametro<string>(sala_equipamento.DT_RECEBIDO, novoSalaEquipamento.dt_recebido.ToString("yyyy-MM-ddTHH:mm:ss"), SqlDbType.DateTime));
 
             int rowCount = cmd.ExecuteNonQuery();
+            AcessoBanco.comandosSqlExecutados += DBUtils.MontaComandoSql(cmd) + "\r\n";
+
             Debug.Write("Linhas afetadas: " + rowCount);
         }
     }

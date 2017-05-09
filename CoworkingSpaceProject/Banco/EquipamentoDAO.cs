@@ -23,10 +23,12 @@ namespace CoworkingSpaceProject.Banco
             SqlCommand cmd = conexaoSql.CreateCommand();
             cmd.CommandText = sql;
 
-            cmd.Parameters.Add(BancoUtils.criaParametro<int>(equipamento.CD_EQUIPAMENTO, novoEquip.cd_equipamento, SqlDbType.Int));
-            cmd.Parameters.Add(BancoUtils.criaParametro<string>(equipamento.NM_EQUIPAMENTO, novoEquip.nm_equipamento, SqlDbType.VarChar));
+            cmd.Parameters.Add(DBUtils.criaParametro<int>(equipamento.CD_EQUIPAMENTO, novoEquip.cd_equipamento, SqlDbType.Int));
+            cmd.Parameters.Add(DBUtils.criaParametro<string>(equipamento.NM_EQUIPAMENTO, novoEquip.nm_equipamento, SqlDbType.VarChar));
 
             int rowCount = cmd.ExecuteNonQuery();
+            AcessoBanco.comandosSqlExecutados += DBUtils.MontaComandoSql(cmd) + "\r\n";
+
             Debug.Write("Linhas afetadas: " + rowCount);
         }
 
@@ -46,8 +48,8 @@ namespace CoworkingSpaceProject.Banco
                     {
                         equipamento equip = new equipamento();
 
-                        equip.cd_equipamento = BancoUtils.buscaValor<int>(equipamento.CD_EQUIPAMENTO, reader);
-                        equip.nm_equipamento = BancoUtils.buscaValor<string>(equipamento.NM_EQUIPAMENTO, reader);
+                        equip.cd_equipamento = DBUtils.buscaValor<int>(equipamento.CD_EQUIPAMENTO, reader);
+                        equip.nm_equipamento = DBUtils.buscaValor<string>(equipamento.NM_EQUIPAMENTO, reader);
 
                         equipamentos.Add(equip);
                     }

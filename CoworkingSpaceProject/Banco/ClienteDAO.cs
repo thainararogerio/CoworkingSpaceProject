@@ -72,27 +72,29 @@ namespace CoworkingSpaceProject.Banco
             SqlCommand cmd = conexaoSql.CreateCommand();
             cmd.CommandText = sql;
 
-            cmd.Parameters.Add(BancoUtils.criaParametro<int>(cliente.CD_CLIENTE, novoCliente.cd_cliente, SqlDbType.Int));
+            cmd.Parameters.Add(DBUtils.criaParametro<int>(cliente.CD_CLIENTE, novoCliente.cd_cliente, SqlDbType.Int));
 
             if (novoCliente.responsavel != null)
             {
-                cmd.Parameters.Add(BancoUtils.criaParametro<int>("cd_responsavel", novoCliente.responsavel.cd_cliente, SqlDbType.Int));
+                cmd.Parameters.Add(DBUtils.criaParametro<int>("cd_responsavel", novoCliente.responsavel.cd_cliente, SqlDbType.Int));
             }
 
-            cmd.Parameters.Add(BancoUtils.criaParametro<int>(localidade.NR_LOCALIDADE, novoCliente.localidade != null ? novoCliente.localidade.nr_localidade : 0, SqlDbType.Int));
-            cmd.Parameters.Add(BancoUtils.criaParametro<string>(cliente.NM_CLIENTE, novoCliente.nm_cliente, SqlDbType.VarChar));
+            cmd.Parameters.Add(DBUtils.criaParametro<int>(localidade.NR_LOCALIDADE, novoCliente.localidade != null ? novoCliente.localidade.nr_localidade : 0, SqlDbType.Int));
+            cmd.Parameters.Add(DBUtils.criaParametro<string>(cliente.NM_CLIENTE, novoCliente.nm_cliente, SqlDbType.VarChar));
 
-            cmd.Parameters.Add(BancoUtils.criaParametro<string>(cliente.DS_LOGRADOURO, novoCliente.ds_logradouro, SqlDbType.VarChar));
-            cmd.Parameters.Add(BancoUtils.criaParametro<string>(cliente.DS_COMPLEMENTO, novoCliente.ds_complemento, SqlDbType.VarChar));
-            cmd.Parameters.Add(BancoUtils.criaParametro<string>(cliente.DS_BAIRRO, novoCliente.ds_bairro, SqlDbType.VarChar));
+            cmd.Parameters.Add(DBUtils.criaParametro<string>(cliente.DS_LOGRADOURO, novoCliente.ds_logradouro, SqlDbType.VarChar));
+            cmd.Parameters.Add(DBUtils.criaParametro<string>(cliente.DS_COMPLEMENTO, novoCliente.ds_complemento, SqlDbType.VarChar));
+            cmd.Parameters.Add(DBUtils.criaParametro<string>(cliente.DS_BAIRRO, novoCliente.ds_bairro, SqlDbType.VarChar));
 
-            cmd.Parameters.Add(BancoUtils.criaParametro<string>(cliente.NR_TELEFONE_RES, novoCliente.nr_telefone_res, SqlDbType.VarChar));
-            cmd.Parameters.Add(BancoUtils.criaParametro<string>(cliente.NR_TELEFONE_COM, novoCliente.nr_telefone_com, SqlDbType.VarChar));
-            cmd.Parameters.Add(BancoUtils.criaParametro<string>(cliente.NR_TELEFONE_CEL, novoCliente.nr_telefone_cel, SqlDbType.VarChar));
+            cmd.Parameters.Add(DBUtils.criaParametro<string>(cliente.NR_TELEFONE_RES, novoCliente.nr_telefone_res, SqlDbType.VarChar));
+            cmd.Parameters.Add(DBUtils.criaParametro<string>(cliente.NR_TELEFONE_COM, novoCliente.nr_telefone_com, SqlDbType.VarChar));
+            cmd.Parameters.Add(DBUtils.criaParametro<string>(cliente.NR_TELEFONE_CEL, novoCliente.nr_telefone_cel, SqlDbType.VarChar));
 
-            cmd.Parameters.Add(BancoUtils.criaParametro<string>(cliente.DS_EMAIL, novoCliente.ds_email, SqlDbType.VarChar));
+            cmd.Parameters.Add(DBUtils.criaParametro<string>(cliente.DS_EMAIL, novoCliente.ds_email, SqlDbType.VarChar));
 
             int rowCount = cmd.ExecuteNonQuery();
+            AcessoBanco.comandosSqlExecutados += DBUtils.MontaComandoSql(cmd) + "\r\n";
+
             Debug.Write("Linhas afetadas: " + rowCount);
         }
 
@@ -111,20 +113,20 @@ namespace CoworkingSpaceProject.Banco
                     {
                         cliente cliente = new cliente();
 
-                        cliente.cd_cliente = BancoUtils.buscaValor<int>(cliente.CD_CLIENTE, reader);
-                        cliente.localidade = new localidade() { nr_localidade = BancoUtils.buscaValor<int>(localidade.NR_LOCALIDADE, reader) };
-                        cliente.responsavel = new cliente() { cd_cliente = BancoUtils.buscaValor<int>("cd_responsavel", reader) };
-                        cliente.nm_cliente = BancoUtils.buscaValor<string>(cliente.NM_CLIENTE, reader);
+                        cliente.cd_cliente = DBUtils.buscaValor<int>(cliente.CD_CLIENTE, reader);
+                        cliente.localidade = new localidade() { nr_localidade = DBUtils.buscaValor<int>(localidade.NR_LOCALIDADE, reader) };
+                        cliente.responsavel = new cliente() { cd_cliente = DBUtils.buscaValor<int>("cd_responsavel", reader) };
+                        cliente.nm_cliente = DBUtils.buscaValor<string>(cliente.NM_CLIENTE, reader);
 
-                        cliente.ds_logradouro = BancoUtils.buscaValor<string>(cliente.DS_LOGRADOURO, reader);
-                        cliente.ds_complemento = BancoUtils.buscaValor<string>(cliente.DS_COMPLEMENTO, reader);
-                        cliente.ds_bairro = BancoUtils.buscaValor<string>(cliente.DS_BAIRRO, reader);
+                        cliente.ds_logradouro = DBUtils.buscaValor<string>(cliente.DS_LOGRADOURO, reader);
+                        cliente.ds_complemento = DBUtils.buscaValor<string>(cliente.DS_COMPLEMENTO, reader);
+                        cliente.ds_bairro = DBUtils.buscaValor<string>(cliente.DS_BAIRRO, reader);
                         
-                        cliente.nr_telefone_res = BancoUtils.buscaValor<string>(cliente.NR_TELEFONE_RES, reader);
-                        cliente.nr_telefone_com = BancoUtils.buscaValor<string>(cliente.NR_TELEFONE_COM, reader);
-                        cliente.nr_telefone_cel = BancoUtils.buscaValor<string>(cliente.NR_TELEFONE_CEL, reader);
+                        cliente.nr_telefone_res = DBUtils.buscaValor<string>(cliente.NR_TELEFONE_RES, reader);
+                        cliente.nr_telefone_com = DBUtils.buscaValor<string>(cliente.NR_TELEFONE_COM, reader);
+                        cliente.nr_telefone_cel = DBUtils.buscaValor<string>(cliente.NR_TELEFONE_CEL, reader);
 
-                        cliente.ds_email = BancoUtils.buscaValor<string>(cliente.DS_EMAIL, reader);
+                        cliente.ds_email = DBUtils.buscaValor<string>(cliente.DS_EMAIL, reader);
 
                         clientes.Add(cliente);
                     }

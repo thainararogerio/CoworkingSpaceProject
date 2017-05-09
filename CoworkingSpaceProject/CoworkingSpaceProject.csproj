@@ -55,7 +55,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Banco\AcessoBanco.cs" />
-    <Compile Include="Banco\BancoUtils.cs" />
     <Compile Include="Banco\ClienteDAO.cs" />
     <Compile Include="Banco\EquipamentoDAO.cs" />
     <Compile Include="Banco\LocalidadeDAO.cs" />
