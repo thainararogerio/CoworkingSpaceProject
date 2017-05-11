@@ -43,6 +43,12 @@
             this.txtBox_Reservas = new System.Windows.Forms.TextBox();
             this.txtBox_ComandosSQL = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.bt_ReservasSalaDataHora = new System.Windows.Forms.Button();
+            this.bt_SalasLivresDataHora = new System.Windows.Forms.Button();
+            this.bt_SalasComEquipamento = new System.Windows.Forms.Button();
+            this.bt_clientesNaSalaEm = new System.Windows.Forms.Button();
+            this.bt_ReservasCliente = new System.Windows.Forms.Button();
+            this.bt_ReservasNaoPagasAgrupClientesOrdemValorDesc = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // bt_Reservas
@@ -77,7 +83,7 @@
             // 
             // bt_PopulaBanco
             // 
-            this.bt_PopulaBanco.Location = new System.Drawing.Point(381, 329);
+            this.bt_PopulaBanco.Location = new System.Drawing.Point(422, 329);
             this.bt_PopulaBanco.Name = "bt_PopulaBanco";
             this.bt_PopulaBanco.Size = new System.Drawing.Size(115, 23);
             this.bt_PopulaBanco.TabIndex = 13;
@@ -152,7 +158,7 @@
             this.txtBox_Reservas.Location = new System.Drawing.Point(189, 213);
             this.txtBox_Reservas.Multiline = true;
             this.txtBox_Reservas.Name = "txtBox_Reservas";
-            this.txtBox_Reservas.Size = new System.Drawing.Size(171, 139);
+            this.txtBox_Reservas.Size = new System.Drawing.Size(227, 139);
             this.txtBox_Reservas.TabIndex = 24;
             // 
             // txtBox_ComandosSQL
@@ -164,7 +170,7 @@
             this.txtBox_ComandosSQL.Multiline = true;
             this.txtBox_ComandosSQL.Name = "txtBox_ComandosSQL";
             this.txtBox_ComandosSQL.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtBox_ComandosSQL.Size = new System.Drawing.Size(436, 390);
+            this.txtBox_ComandosSQL.Size = new System.Drawing.Size(436, 510);
             this.txtBox_ComandosSQL.TabIndex = 25;
             // 
             // label1
@@ -176,11 +182,77 @@
             this.label1.TabIndex = 26;
             this.label1.Text = "Comandos SQL executados:";
             // 
+            // bt_ReservasSalaDataHora
+            // 
+            this.bt_ReservasSalaDataHora.Location = new System.Drawing.Point(12, 358);
+            this.bt_ReservasSalaDataHora.Name = "bt_ReservasSalaDataHora";
+            this.bt_ReservasSalaDataHora.Size = new System.Drawing.Size(267, 23);
+            this.bt_ReservasSalaDataHora.TabIndex = 27;
+            this.bt_ReservasSalaDataHora.Text = "Reservas da sala 1 no dia 01/01/2017, as 20:00";
+            this.bt_ReservasSalaDataHora.UseVisualStyleBackColor = true;
+            this.bt_ReservasSalaDataHora.Click += new System.EventHandler(this.bt_ReservasSalaDataHora_Click);
+            // 
+            // bt_SalasLivresDataHora
+            // 
+            this.bt_SalasLivresDataHora.Location = new System.Drawing.Point(12, 387);
+            this.bt_SalasLivresDataHora.Name = "bt_SalasLivresDataHora";
+            this.bt_SalasLivresDataHora.Size = new System.Drawing.Size(267, 23);
+            this.bt_SalasLivresDataHora.TabIndex = 28;
+            this.bt_SalasLivresDataHora.Text = "Salas livres no dia 01/01/2017, as 20:00";
+            this.bt_SalasLivresDataHora.UseVisualStyleBackColor = true;
+            this.bt_SalasLivresDataHora.Click += new System.EventHandler(this.bt_SalasLivresDataHora_Click);
+            // 
+            // bt_SalasComEquipamento
+            // 
+            this.bt_SalasComEquipamento.Location = new System.Drawing.Point(12, 416);
+            this.bt_SalasComEquipamento.Name = "bt_SalasComEquipamento";
+            this.bt_SalasComEquipamento.Size = new System.Drawing.Size(267, 23);
+            this.bt_SalasComEquipamento.TabIndex = 29;
+            this.bt_SalasComEquipamento.Text = "Salas com equipamento Notebook";
+            this.bt_SalasComEquipamento.UseVisualStyleBackColor = true;
+            this.bt_SalasComEquipamento.Click += new System.EventHandler(this.bt_SalasComEquipamento_Click);
+            // 
+            // bt_clientesNaSalaEm
+            // 
+            this.bt_clientesNaSalaEm.Location = new System.Drawing.Point(12, 445);
+            this.bt_clientesNaSalaEm.Name = "bt_clientesNaSalaEm";
+            this.bt_clientesNaSalaEm.Size = new System.Drawing.Size(267, 23);
+            this.bt_clientesNaSalaEm.TabIndex = 30;
+            this.bt_clientesNaSalaEm.Text = "Clientes na sala 1 no dia 01/01/2016, as 17:00";
+            this.bt_clientesNaSalaEm.UseVisualStyleBackColor = true;
+            this.bt_clientesNaSalaEm.Click += new System.EventHandler(this.bt_clientesNaSalaEm_Click);
+            // 
+            // bt_ReservasCliente
+            // 
+            this.bt_ReservasCliente.Location = new System.Drawing.Point(12, 474);
+            this.bt_ReservasCliente.Name = "bt_ReservasCliente";
+            this.bt_ReservasCliente.Size = new System.Drawing.Size(267, 23);
+            this.bt_ReservasCliente.TabIndex = 31;
+            this.bt_ReservasCliente.Text = "Reservas do cliente 3";
+            this.bt_ReservasCliente.UseVisualStyleBackColor = true;
+            this.bt_ReservasCliente.Click += new System.EventHandler(this.bt_ReservasCliente_Click);
+            // 
+            // bt_ReservasNaoPagasAgrupClientesOrdemValorDesc
+            // 
+            this.bt_ReservasNaoPagasAgrupClientesOrdemValorDesc.Location = new System.Drawing.Point(12, 503);
+            this.bt_ReservasNaoPagasAgrupClientesOrdemValorDesc.Name = "bt_ReservasNaoPagasAgrupClientesOrdemValorDesc";
+            this.bt_ReservasNaoPagasAgrupClientesOrdemValorDesc.Size = new System.Drawing.Size(362, 23);
+            this.bt_ReservasNaoPagasAgrupClientesOrdemValorDesc.TabIndex = 32;
+            this.bt_ReservasNaoPagasAgrupClientesOrdemValorDesc.Text = "Reservas não pagas agrupadas por cliente e ordenadas por valor desc";
+            this.bt_ReservasNaoPagasAgrupClientesOrdemValorDesc.UseVisualStyleBackColor = true;
+            this.bt_ReservasNaoPagasAgrupClientesOrdemValorDesc.Click += new System.EventHandler(this.bt_ReservasNaoPagasAgrupClientesOrdemValorDesc_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(991, 442);
+            this.ClientSize = new System.Drawing.Size(991, 562);
+            this.Controls.Add(this.bt_ReservasNaoPagasAgrupClientesOrdemValorDesc);
+            this.Controls.Add(this.bt_ReservasCliente);
+            this.Controls.Add(this.bt_clientesNaSalaEm);
+            this.Controls.Add(this.bt_SalasComEquipamento);
+            this.Controls.Add(this.bt_SalasLivresDataHora);
+            this.Controls.Add(this.bt_ReservasSalaDataHora);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtBox_ComandosSQL);
             this.Controls.Add(this.txtBox_Reservas);
@@ -217,6 +289,12 @@
         private System.Windows.Forms.TextBox txtBox_Reservas;
         private System.Windows.Forms.TextBox txtBox_ComandosSQL;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button bt_ReservasSalaDataHora;
+        private System.Windows.Forms.Button bt_SalasLivresDataHora;
+        private System.Windows.Forms.Button bt_SalasComEquipamento;
+        private System.Windows.Forms.Button bt_clientesNaSalaEm;
+        private System.Windows.Forms.Button bt_ReservasCliente;
+        private System.Windows.Forms.Button bt_ReservasNaoPagasAgrupClientesOrdemValorDesc;
     }
 }
 

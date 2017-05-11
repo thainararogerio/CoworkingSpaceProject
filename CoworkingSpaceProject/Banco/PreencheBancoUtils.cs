@@ -111,10 +111,19 @@ namespace CoworkingSpaceProject
                 new DateTime(2017, 01, 02, 01, 00, 00), dt_saida = new DateTime(2017, 01, 02, 23, 00, 00), fl_pago = true, vl_reserva = 10.0F };
             reserva reserva3 = new reserva() { cd_cliente = 3, cd_reserva = 3, cd_sala = 3, dt_entrada = 
                 new DateTime(2017, 01, 03, 01, 00, 00), dt_saida = new DateTime(2017, 01, 03, 23, 00, 00), fl_pago = false, vl_reserva = 10.0F };
+            reserva reserva4 = new reserva() { cd_cliente = 1, cd_reserva = 4, cd_sala = 1, dt_entrada = 
+                new DateTime(2016, 01, 01, 13, 00, 00), dt_saida = new DateTime(2016, 01, 01, 17, 00, 00), fl_pago = false, vl_reserva = 6.0F };
+            reserva reserva5 = new reserva() { cd_cliente = 2, cd_reserva = 5, cd_sala = 2, dt_entrada = 
+                new DateTime(2016, 01, 02, 14, 00, 00), dt_saida = new DateTime(2016, 01, 02, 20, 00, 00), fl_pago = false, vl_reserva = 7.0F };
+            reserva reserva6 = new reserva() { cd_cliente = 3, cd_reserva = 6, cd_sala = 3, dt_entrada = 
+                new DateTime(2016, 01, 03, 15, 00, 00), dt_saida = new DateTime(2016, 01, 03, 18, 00, 00), fl_pago = false, vl_reserva = 8.0F };
 
             ReservaDAO.Add(reserva1, conexaoSql);
             ReservaDAO.Add(reserva2, conexaoSql);
             ReservaDAO.Add(reserva3, conexaoSql);
+            ReservaDAO.Add(reserva4, conexaoSql);
+            ReservaDAO.Add(reserva5, conexaoSql);
+            ReservaDAO.Add(reserva6, conexaoSql);
         }
 
         internal void AddMulta(SqlConnection conexaoSql)

@@ -15,7 +15,7 @@ namespace CoworkingSpaceProject
         {
             string datasource = @"PCBNU002135\SQLEXPRESS";
 
-            string database = "eCoworking2";
+            string database = "eCoworking";
             string username = "sa";
             string password = "12345675";
 

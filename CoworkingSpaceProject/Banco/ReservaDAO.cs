@@ -43,10 +43,32 @@ namespace CoworkingSpaceProject.Banco
         internal static List<reserva> Busca(SqlConnection conexaoSql)
         {
             string sql = "SELECT * FROM " + NOME_TABELA;
+            return Le(sql, conexaoSql);
+        }
+
+        internal static List<reserva> BuscaPor(sala sala, DateTime dataHora, SqlConnection conexaoSql)
+        {
+            string sql = "SELECT * FROM " + NOME_TABELA;
+            sql += " where cd_sala=" + sala.cd_sala;
+            sql += " and '" + dataHora.ToString("yyyy-MM-ddTHH:mm:ss") + "' between dt_entrada and dt_saida";
+
+            return Le(sql, conexaoSql);
+        }
+
+        internal static List<reserva> BuscaPor(cliente cliente, SqlConnection conexaoSql)
+        {
+            string sql = "SELECT * FROM " + NOME_TABELA;
+            sql += " where cd_cliente=" + cliente.cd_cliente;
+
+            return Le(sql, conexaoSql);
+        }
+
+        internal static List<reserva> Le(string sql, SqlConnection conexaoSql)
+        {
             SqlCommand cmd = conexaoSql.CreateCommand();
             cmd.CommandText = sql;
 
-            AcessoBanco.comandosSqlExecutados += sql + "\n";
+            AcessoBanco.comandosSqlExecutados += sql + "\r\n";
 
             List<reserva> reservas = new List<reserva>();
             using (DbDataReader reader = cmd.ExecuteReader())
@@ -79,5 +101,7 @@ namespace CoworkingSpaceProject.Banco
 
             return reservas;
         }
+
+    
     }
 }

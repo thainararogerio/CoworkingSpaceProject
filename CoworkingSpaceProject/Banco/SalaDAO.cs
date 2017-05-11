@@ -13,7 +13,8 @@ namespace CoworkingSpaceProject.Banco
 {
     class SalaDAO
     {
-        public static string NOME_TABELA = "sala";
+        public static string NOME_TABELA { get { return "sala"; } }
+
         public static void Add(sala novaSala, SqlConnection conexaoSql)
         {
             string sql = "INSERT INTO sala (" +
@@ -45,8 +46,34 @@ namespace CoworkingSpaceProject.Banco
         internal static List<sala> Busca(SqlConnection conexaoSql)
         {
             string sql = "SELECT * FROM " + NOME_TABELA;
+            return Le(sql, conexaoSql);
+        }
+
+        internal static List<sala> BuscaSalasLivresEm(DateTime dataHora, SqlConnection conexaoSql)
+        {
+            string sql = "SELECT * FROM " + NOME_TABELA;
+            sql += " where cd_sala not in ";
+            sql += " (select cd_sala from reserva ";
+            sql += " where '" + dataHora.ToString("yyyy-MM-ddTHH:mm:ss") + "' between dt_entrada and dt_saida)";
+
+            return Le(sql, conexaoSql);
+        }
+
+        internal static List<sala> BuscaSalasComEquipamento(int equipamento, SqlConnection conexaoSql)
+        {
+            string sql = "SELECT * FROM " + NOME_TABELA + ", " + SalaEquipamentoDAO.NOME_TABELA;
+            sql += " where sala.cd_sala = sala_equipamento.cd_sala";
+            sql += " and sala_equipamento.cd_equipamento = " + equipamento;
+
+            return Le(sql, conexaoSql);
+        }
+
+        internal static List<sala> Le(string sql, SqlConnection conexaoSql)
+        {
             SqlCommand cmd = conexaoSql.CreateCommand();
             cmd.CommandText = sql;
+
+            AcessoBanco.comandosSqlExecutados += sql + "\r\n";
 
             List<sala> salas = new List<sala>();
             using (DbDataReader reader = cmd.ExecuteReader())
@@ -70,5 +97,7 @@ namespace CoworkingSpaceProject.Banco
 
             return salas;
         }
+
+        
     }
 }

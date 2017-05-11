@@ -8,6 +8,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static CoworkingSpaceProject.Banco.DAOGenerico;
 
 namespace CoworkingSpaceProject
 {
@@ -155,6 +156,36 @@ namespace CoworkingSpaceProject
         public List<cliente> BuscaClientes()
         {
             return ClienteDAO.Busca(_conexaoSql);
+        }
+
+        internal List<reserva> BuscaReservasSalaDataHora()
+        {
+            return ReservaDAO.BuscaPor(new sala() { cd_sala = 1 }, new DateTime(2017, 01, 01, 20, 0, 0), _conexaoSql);
+        }
+
+        internal List<sala> BuscaSalasLivresDataHora()
+        {
+            return SalaDAO.BuscaSalasLivresEm(new DateTime(2017, 01, 01, 20, 0, 0), _conexaoSql);
+        }
+
+        internal List<sala> BuscaSalasComEquipamento()
+        {
+            return SalaDAO.BuscaSalasComEquipamento(1, _conexaoSql);
+        }
+
+        internal List<cliente> BuscaNaSalaDataHora()
+        {
+            return ClienteDAO.BuscaClienteSalaDataHora(1, new DateTime(2016, 01, 01, 17, 0, 0), _conexaoSql);
+        }
+
+        internal List<reserva> BuscaReservasCliente()
+        {
+            return ReservaDAO.BuscaPor(new cliente() { cd_cliente = 3 }, _conexaoSql);
+        }
+
+        internal List<cliente_reserva> BuscaReservasNaoPagas()
+        {
+            return DAOGenerico.BuscaReservasAgrupCliente(new reserva() { fl_pago = false }, SortOrder.Descending, _conexaoSql);
         }
     }
 }

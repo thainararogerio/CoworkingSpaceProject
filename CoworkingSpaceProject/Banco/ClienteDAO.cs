@@ -101,8 +101,26 @@ namespace CoworkingSpaceProject.Banco
         internal static List<cliente> Busca(SqlConnection conexaoSql)
         {
             string sql = "SELECT * FROM " + NOME_TABELA;
+            return Le(conexaoSql, sql);
+        }
+
+        internal static List<cliente> BuscaClienteSalaDataHora(int sala, DateTime dataHora, SqlConnection conexaoSql)
+        {
+            string sql = "SELECT * FROM " + NOME_TABELA;
+            sql += " where cd_cliente in ";
+            sql += " (select cd_cliente from reserva where '";
+            sql += dataHora.ToString("yyyy-MM-ddTHH:mm:ss") + "' between reserva.dt_entrada and reserva.dt_saida ";
+            sql += " and reserva.cd_sala = " + sala + ")";
+
+            return Le(conexaoSql, sql);
+        }
+
+        private static List<cliente> Le(SqlConnection conexaoSql, string sql)
+        {
             SqlCommand cmd = conexaoSql.CreateCommand();
             cmd.CommandText = sql;
+
+            AcessoBanco.comandosSqlExecutados += sql + "\r\n";
 
             List<cliente> clientes = new List<cliente>();
             using (DbDataReader reader = cmd.ExecuteReader())
@@ -121,7 +139,7 @@ namespace CoworkingSpaceProject.Banco
                         cliente.ds_logradouro = DBUtils.buscaValor<string>(cliente.DS_LOGRADOURO, reader);
                         cliente.ds_complemento = DBUtils.buscaValor<string>(cliente.DS_COMPLEMENTO, reader);
                         cliente.ds_bairro = DBUtils.buscaValor<string>(cliente.DS_BAIRRO, reader);
-                        
+
                         cliente.nr_telefone_res = DBUtils.buscaValor<string>(cliente.NR_TELEFONE_RES, reader);
                         cliente.nr_telefone_com = DBUtils.buscaValor<string>(cliente.NR_TELEFONE_COM, reader);
                         cliente.nr_telefone_cel = DBUtils.buscaValor<string>(cliente.NR_TELEFONE_CEL, reader);
@@ -135,5 +153,7 @@ namespace CoworkingSpaceProject.Banco
 
             return clientes;
         }
+
+        
     }
 }

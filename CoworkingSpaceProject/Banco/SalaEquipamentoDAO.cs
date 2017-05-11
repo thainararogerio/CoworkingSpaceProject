@@ -12,6 +12,8 @@ namespace CoworkingSpaceProject.Banco
 {
     class SalaEquipamentoDAO
     {
+        public static string NOME_TABELA { get { return "sala_equipamento"; } }
+
         public static void Add(sala_equipamento novoSalaEquipamento, SqlConnection conexaoSql)
         {
             string sql = "INSERT INTO sala_equipamento (" + sala.CD_SALA + ", " + equipamento.CD_EQUIPAMENTO + ", " + sala_equipamento.DT_RECEBIDO + ") "
