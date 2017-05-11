@@ -154,6 +154,14 @@ namespace CoworkingSpaceProject.Banco
             return clientes;
         }
 
-        
+        internal static List<cliente> Busca(localidade localidade, SqlConnection conexaoSql)
+        {
+            string sql = "SELECT * FROM " + NOME_TABELA;
+            sql += " where cliente.nr_localidade = ";
+            sql += " (select nr_localidade from localidade ";
+            sql += " where nm_localidade = '" + localidade.nm_localidade + "') ";
+
+            return Le(conexaoSql, sql);
+        }
     }
 }

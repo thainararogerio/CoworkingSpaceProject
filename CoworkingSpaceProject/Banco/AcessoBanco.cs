@@ -14,14 +14,15 @@ namespace CoworkingSpaceProject
 {
     class AcessoBanco
     {
-        private readonly SqlConnection _conexaoSql = DBUtils.GetDBConnection();
+        private readonly SqlConnection _conexaoSql;
         private bool _debug;
         private PreencheBancoUtils _preencheBancoUtils = new PreencheBancoUtils();
         public static string comandosSqlExecutados;
 
-        public AcessoBanco(bool debug)
+        public AcessoBanco(bool debug, string nomeBanco)
         {
             _debug = debug;
+            _conexaoSql = DBUtils.GetDBConnection(nomeBanco);
         }
 
         public void IniciaBanco()
@@ -196,6 +197,16 @@ namespace CoworkingSpaceProject
         internal float BuscaSomaReservasCliente()
         {
             return ReservaDAO.BuscaTotalPendentePorCliente(new cliente() { cd_cliente = 3 }, _conexaoSql);
+        }
+
+        internal List<cliente_multa> BuscaTotalPagarMultasCliente()
+        {
+            return DAOGenerico.BuscaClienteMultaTotalPagar(_conexaoSql);
+        }
+
+        internal List<cliente> BuscaClientes(localidade localidade)
+        {
+            return ClienteDAO.Busca(localidade, _conexaoSql);
         }
     }
 }

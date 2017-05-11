@@ -115,5 +115,56 @@ namespace CoworkingSpaceProject.Banco
             public float vl_reserva { get; set; }
             public float vl_multa { get; set; }
         }
+
+        internal static List<cliente_multa> BuscaClienteMultaTotalPagar(SqlConnection conexaoSql)
+        {
+            string sql = "select cd_cliente, reserva.cd_reserva, SUM(vl_multa) as Total ";
+            sql += " from reserva, multa ";
+            sql += " group by cd_cliente, reserva.cd_reserva, multa.cd_reserva, dt_pagto ";
+            sql += " having dt_pagto is null ";
+            sql += " and reserva.cd_reserva = multa.cd_reserva ";
+
+            return LeClienteMulta(sql, conexaoSql);
+        }
+
+        private static List<cliente_multa> LeClienteMulta(string sql, SqlConnection conexaoSql)
+        {
+            SqlCommand cmd = conexaoSql.CreateCommand();
+            cmd.CommandText = sql;
+
+            AcessoBanco.comandosSqlExecutados += sql + "\r\n";
+
+            List<cliente_multa> lista = new List<cliente_multa>();
+            using (DbDataReader reader = cmd.ExecuteReader())
+            {
+                if (reader.HasRows)
+                {
+
+                    while (reader.Read())
+                    {
+                        cliente_multa cm = new cliente_multa();
+
+                        cm.cd_cliente = DBUtils.buscaValor<int>(cliente.CD_CLIENTE, reader);
+                        cm.cd_reserva = DBUtils.buscaValor<int>(reserva.CD_RESERVA, reader);
+
+                        int idx = reader.GetOrdinal("Total");
+                        var vl = reader.GetDecimal(idx);
+                        cm.vl_total = float.Parse(vl.ToString());
+
+                        lista.Add(cm);
+                    }
+                }
+            }
+
+            return lista;
+
+        }
+
+        internal class cliente_multa
+        {
+            public int cd_cliente { get; set; }
+            public int cd_reserva { get; set; }
+            public float vl_total { get; set; }
+        }
     }
 }

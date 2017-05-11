@@ -111,10 +111,8 @@ Funcionalidades:
  - 2.6: Reservas não pagas agrupadas por cliente e ordenadas por valor desc.
  - 2.7: Reservas e suas multas não pagas.
  - 2.8: Soma dos valores das reservas não pagas de determinado cliente.
- 
- - 2.9: Soma dos valores de todas as reservas não pagas agrupadas por cliente.
+ - 2.9: Soma dos valores de todas as multas não pagas agrupadas por cliente.
  - 2.10: Clientes de determinada localidade.
-
 
  -
  -2.1: 
@@ -162,17 +160,11 @@ from reserva
 where fl_pago=0
 and cd_cliente = codigo_cliente
  -2.9:
-select cd_cliente, SUM(vl_reserva)
-from reserva
-group by cd_cliente, fl_pago
-having fl_pago=0
-and cd_cliente in
-(select cd_cliente 
-from reserva
-where cd_reserva in 
-(select cd_reserva 
-from multa
-where dt_pagto is null))
+select cd_cliente, reserva.cd_reserva, SUM(vl_multa)
+from reserva, multa
+group by cd_cliente, reserva.cd_reserva, multa.cd_reserva, dt_pagto
+having dt_pagto is null
+and reserva.cd_reserva = multa.cd_reserva
  -2.10:
 select * from cliente
 where cliente.nr_localidade =

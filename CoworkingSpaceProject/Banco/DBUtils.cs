@@ -11,11 +11,11 @@ namespace CoworkingSpaceProject
 {
     class DBUtils
     {
-        public static SqlConnection GetDBConnection()
+        public static SqlConnection GetDBConnection(string nomeBanco)
         {
             string datasource = @"PCBNU002135\SQLEXPRESS";
 
-            string database = "eCoworking";
+            string database = nomeBanco;
             string username = "sa";
             string password = "12345675";
 

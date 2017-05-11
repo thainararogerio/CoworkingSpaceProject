@@ -130,9 +130,13 @@ namespace CoworkingSpaceProject
         {
             multa multa1 = new multa() { cd_multa = 1, cd_reserva = 1, dt_pagto = new DateTime(2017, 02, 01, 12, 00, 00), vl_multa = 5.0F };
             multa multa2 = new multa() { cd_multa = 2, cd_reserva = 2, dt_pagto = new DateTime(2017, 03, 01, 13, 00, 00), vl_multa = 15.0F };
+            multa multa3 = new multa() { cd_multa = 3, cd_reserva = 3, dt_pagto = DateTime.MaxValue, vl_multa = 20.0F };
+            multa multa4 = new multa() { cd_multa = 4, cd_reserva = 4, dt_pagto = DateTime.MaxValue, vl_multa = 10.0F };
 
             MultaDAO.Add(multa1, conexaoSql);
             MultaDAO.Add(multa2, conexaoSql);
+            MultaDAO.Add(multa3, conexaoSql);
+            MultaDAO.Add(multa4, conexaoSql);
         }
     }
 }

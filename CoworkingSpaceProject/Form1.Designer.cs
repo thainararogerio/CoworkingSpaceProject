@@ -51,6 +51,12 @@
             this.bt_ReservasNaoPagasAgrupClientesOrdemValorDesc = new System.Windows.Forms.Button();
             this.bt_ReservasMultasNaoPagas = new System.Windows.Forms.Button();
             this.bt_SomaReservasCliente = new System.Windows.Forms.Button();
+            this.bt_SomaTodasMultasNaoPagasPorCliente = new System.Windows.Forms.Button();
+            this.bt_ClientesLocalidade = new System.Windows.Forms.Button();
+            this.bt_mostrarScriptsCriacao = new System.Windows.Forms.Button();
+            this.bt_mostrarScriptsPopulacao = new System.Windows.Forms.Button();
+            this.txtBox_nomeBanco = new System.Windows.Forms.TextBox();
+            this.bt_IniciaBanco = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // bt_Reservas
@@ -264,11 +270,75 @@
             this.bt_SomaReservasCliente.UseVisualStyleBackColor = true;
             this.bt_SomaReservasCliente.Click += new System.EventHandler(this.bt_SomaReservasCliente_Click);
             // 
+            // bt_SomaTodasMultasNaoPagasPorCliente
+            // 
+            this.bt_SomaTodasMultasNaoPagasPorCliente.Location = new System.Drawing.Point(12, 590);
+            this.bt_SomaTodasMultasNaoPagasPorCliente.Name = "bt_SomaTodasMultasNaoPagasPorCliente";
+            this.bt_SomaTodasMultasNaoPagasPorCliente.Size = new System.Drawing.Size(293, 23);
+            this.bt_SomaTodasMultasNaoPagasPorCliente.TabIndex = 35;
+            this.bt_SomaTodasMultasNaoPagasPorCliente.Text = "Total a pagar de todas as Multas, agrupado por cliente";
+            this.bt_SomaTodasMultasNaoPagasPorCliente.UseVisualStyleBackColor = true;
+            this.bt_SomaTodasMultasNaoPagasPorCliente.Click += new System.EventHandler(this.bt_SomaTodasReservasNaoPagasPorCliente_Click);
+            // 
+            // bt_ClientesLocalidade
+            // 
+            this.bt_ClientesLocalidade.Location = new System.Drawing.Point(12, 619);
+            this.bt_ClientesLocalidade.Name = "bt_ClientesLocalidade";
+            this.bt_ClientesLocalidade.Size = new System.Drawing.Size(293, 23);
+            this.bt_ClientesLocalidade.TabIndex = 36;
+            this.bt_ClientesLocalidade.Text = "Clientes da Localidade 1";
+            this.bt_ClientesLocalidade.UseVisualStyleBackColor = true;
+            this.bt_ClientesLocalidade.Click += new System.EventHandler(this.bt_ClientesLocalidade_Click);
+            // 
+            // bt_mostrarScriptsCriacao
+            // 
+            this.bt_mostrarScriptsCriacao.Location = new System.Drawing.Point(366, 590);
+            this.bt_mostrarScriptsCriacao.Name = "bt_mostrarScriptsCriacao";
+            this.bt_mostrarScriptsCriacao.Size = new System.Drawing.Size(147, 23);
+            this.bt_mostrarScriptsCriacao.TabIndex = 37;
+            this.bt_mostrarScriptsCriacao.Text = "Scripts Criação Tabelas";
+            this.bt_mostrarScriptsCriacao.UseVisualStyleBackColor = true;
+            this.bt_mostrarScriptsCriacao.Click += new System.EventHandler(this.bt_mostrarScriptsCriacao_Click);
+            // 
+            // bt_mostrarScriptsPopulacao
+            // 
+            this.bt_mostrarScriptsPopulacao.Location = new System.Drawing.Point(366, 619);
+            this.bt_mostrarScriptsPopulacao.Name = "bt_mostrarScriptsPopulacao";
+            this.bt_mostrarScriptsPopulacao.Size = new System.Drawing.Size(147, 23);
+            this.bt_mostrarScriptsPopulacao.TabIndex = 38;
+            this.bt_mostrarScriptsPopulacao.Text = "Scripts População Banco";
+            this.bt_mostrarScriptsPopulacao.UseVisualStyleBackColor = true;
+            this.bt_mostrarScriptsPopulacao.Click += new System.EventHandler(this.bt_mostrarScriptsPopulacao_Click);
+            // 
+            // txtBox_nomeBanco
+            // 
+            this.txtBox_nomeBanco.Location = new System.Drawing.Point(422, 387);
+            this.txtBox_nomeBanco.Name = "txtBox_nomeBanco";
+            this.txtBox_nomeBanco.Size = new System.Drawing.Size(100, 20);
+            this.txtBox_nomeBanco.TabIndex = 39;
+            this.txtBox_nomeBanco.Text = "eCoworking3";
+            // 
+            // bt_IniciaBanco
+            // 
+            this.bt_IniciaBanco.Location = new System.Drawing.Point(422, 413);
+            this.bt_IniciaBanco.Name = "bt_IniciaBanco";
+            this.bt_IniciaBanco.Size = new System.Drawing.Size(115, 23);
+            this.bt_IniciaBanco.TabIndex = 40;
+            this.bt_IniciaBanco.Text = "Inicia banco";
+            this.bt_IniciaBanco.UseVisualStyleBackColor = true;
+            this.bt_IniciaBanco.Click += new System.EventHandler(this.bt_IniciaBanco_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(991, 656);
+            this.Controls.Add(this.bt_IniciaBanco);
+            this.Controls.Add(this.txtBox_nomeBanco);
+            this.Controls.Add(this.bt_mostrarScriptsPopulacao);
+            this.Controls.Add(this.bt_mostrarScriptsCriacao);
+            this.Controls.Add(this.bt_ClientesLocalidade);
+            this.Controls.Add(this.bt_SomaTodasMultasNaoPagasPorCliente);
             this.Controls.Add(this.bt_SomaReservasCliente);
             this.Controls.Add(this.bt_ReservasMultasNaoPagas);
             this.Controls.Add(this.bt_ReservasNaoPagasAgrupClientesOrdemValorDesc);
@@ -321,6 +391,12 @@
         private System.Windows.Forms.Button bt_ReservasNaoPagasAgrupClientesOrdemValorDesc;
         private System.Windows.Forms.Button bt_ReservasMultasNaoPagas;
         private System.Windows.Forms.Button bt_SomaReservasCliente;
+        private System.Windows.Forms.Button bt_SomaTodasMultasNaoPagasPorCliente;
+        private System.Windows.Forms.Button bt_ClientesLocalidade;
+        private System.Windows.Forms.Button bt_mostrarScriptsCriacao;
+        private System.Windows.Forms.Button bt_mostrarScriptsPopulacao;
+        private System.Windows.Forms.TextBox txtBox_nomeBanco;
+        private System.Windows.Forms.Button bt_IniciaBanco;
     }
 }
 

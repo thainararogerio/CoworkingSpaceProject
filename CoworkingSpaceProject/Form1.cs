@@ -16,12 +16,13 @@ namespace CoworkingSpaceProject
 {
     public partial class Form1 : Form
     {
-        private static string SEPARADOR_REGISTROS = ";";
+        private static string SEPARADOR_REGISTROS = "; ";
 
-        private readonly AcessoBanco _acessoBanco = new AcessoBanco(true);
+        private AcessoBanco _acessoBanco;
 
         public Form1()
         {
+            _acessoBanco = new AcessoBanco(true, "eCoworking");
             _acessoBanco.IniciaBanco();
             InitializeComponent();
         }
@@ -296,6 +297,60 @@ namespace CoworkingSpaceProject
             txtBox_Reservas.Clear();
             txtBox_Reservas.Text = "R$" + soma.ToString("0.00");
             atualizaTextoComandosSQLExecutados();
+        }
+
+        private void bt_SomaTodasReservasNaoPagasPorCliente_Click(object sender, EventArgs e)
+        {
+            List<cliente_multa> cm = _acessoBanco.BuscaTotalPagarMultasCliente();
+            string txt = "";
+            foreach (cliente_multa obj in cm)
+            {
+                txt += obj.cd_cliente;
+                txt += SEPARADOR_REGISTROS;
+                txt += obj.cd_reserva;
+                txt += SEPARADOR_REGISTROS;
+                txt += "R$" + obj.vl_total.ToString("0.00");
+                txt += "\r\n";
+            }
+
+            txtBox_Reservas.Clear();
+            txtBox_Reservas.Text = txt;
+            atualizaTextoComandosSQLExecutados();
+        }
+
+        private void bt_ClientesLocalidade_Click(object sender, EventArgs e)
+        {
+            List<cliente> clientes = _acessoBanco.BuscaClientes(new localidade() { nm_localidade = "Localidade 1" });
+            string txt = "";
+            foreach (cliente obj in clientes)
+            {
+                txt += obj.cd_cliente;
+                txt += SEPARADOR_REGISTROS;
+                txt += obj.nm_cliente;
+                txt += SEPARADOR_REGISTROS;
+                txt += obj.responsavel.cd_cliente;
+                txt += "\r\n";
+            }
+
+            txtBox_Clientes.Clear();
+            txtBox_Clientes.Text = txt;
+            atualizaTextoComandosSQLExecutados();
+        }
+
+        private void bt_mostrarScriptsCriacao_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void bt_mostrarScriptsPopulacao_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void bt_IniciaBanco_Click(object sender, EventArgs e)
+        {
+            _acessoBanco = new AcessoBanco(true, txtBox_nomeBanco.Text);
+            _acessoBanco.IniciaBanco();
         }
     }
 }
