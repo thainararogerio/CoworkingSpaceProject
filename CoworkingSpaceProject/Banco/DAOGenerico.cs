@@ -17,7 +17,7 @@ namespace CoworkingSpaceProject.Banco
             public float vl_reserva { get; set; }
         }
 
-        internal static List<cliente_reserva> Le(string sql, SqlConnection conexaoSql)
+        internal static List<cliente_reserva> LeClienteReserva(string sql, SqlConnection conexaoSql)
         {
             SqlCommand cmd = conexaoSql.CreateCommand();
             cmd.CommandText = sql;
@@ -56,7 +56,64 @@ namespace CoworkingSpaceProject.Banco
             sql += " and reserva.fl_pago = " + (reserva.fl_pago ? "1" : "0");
             sql += " order by reserva.vl_reserva " + (order == SortOrder.Ascending ? "asc" : "desc");
 
-            return Le(sql, conexaoSql);
+            return LeClienteReserva(sql, conexaoSql);
+        }
+
+        internal static List<reserva_multa> BuscaReservasMultaNaoPaga(SqlConnection conexaoSql)
+        {
+            string sql = "select reserva.cd_cliente, reserva.cd_sala, reserva.dt_entrada, reserva.vl_reserva, multa.vl_multa ";
+            sql += " from reserva, multa ";
+            sql += " where reserva.cd_reserva  in ";
+            sql += " (select cd_reserva from multa ";
+            sql +=  " where dt_pagto is null) ";
+
+            return LeReservaMulta(sql, conexaoSql);
+        }
+
+        private static List<reserva_multa> LeReservaMulta(string sql, SqlConnection conexaoSql)
+        {
+            SqlCommand cmd = conexaoSql.CreateCommand();
+            cmd.CommandText = sql;
+
+            AcessoBanco.comandosSqlExecutados += sql + "\r\n";
+
+            List<reserva_multa> lista = new List<reserva_multa>();
+            using (DbDataReader reader = cmd.ExecuteReader())
+            {
+                if (reader.HasRows)
+                {
+
+                    while (reader.Read())
+                    {
+                        reserva_multa cr = new reserva_multa();
+
+                        cr.cd_cliente = DBUtils.buscaValor<int>(cliente.CD_CLIENTE, reader);
+                        cr.cd_sala = DBUtils.buscaValor<int>(sala.CD_SALA, reader);
+                        cr.dt_entrada = DBUtils.buscaValor<DateTime>(reserva.DT_ENTRADA, reader);
+
+                        int idx = reader.GetOrdinal(multa.VL_MULTA);
+                        var vl = reader.GetDecimal(idx);
+                        cr.vl_multa = float.Parse(vl.ToString());
+
+                        idx = reader.GetOrdinal(reserva.VL_RESERVA);
+                        vl = reader.GetDecimal(idx);
+                        cr.vl_reserva = float.Parse(vl.ToString());
+                        
+                        lista.Add(cr);
+                    }
+                }
+            }
+
+            return lista;
+        }
+
+        internal class reserva_multa
+        {
+            public int cd_cliente { get; set; }
+            public int cd_sala { get; set; }
+            public DateTime dt_entrada { get; set; }
+            public float vl_reserva { get; set; }
+            public float vl_multa { get; set; }
         }
     }
 }

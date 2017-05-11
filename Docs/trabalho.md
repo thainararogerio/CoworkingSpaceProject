@@ -109,9 +109,9 @@ Funcionalidades:
  - 2.4: Clientes que utilizaram a sala na data e hora determinados
  - 2.5: Reservas de determinado cliente.
  - 2.6: Reservas não pagas agrupadas por cliente e ordenadas por valor desc.
- 
  - 2.7: Reservas e suas multas não pagas.
  - 2.8: Soma dos valores das reservas não pagas de determinado cliente.
+ 
  - 2.9: Soma dos valores de todas as reservas não pagas agrupadas por cliente.
  - 2.10: Clientes de determinada localidade.
 
@@ -151,9 +151,9 @@ having cliente.cd_cliente = reserva.cd_cliente
 and reserva.fl_pago = 0
 order by reserva.vl_reserva desc
  -2.7:
-select *
-from reserva
-where cd_reserva  in
+select reserva.cd_cliente, reserva.cd_sala, reserva.dt_entrada, reserva.vl_reserva, multa.vl_multa
+from reserva, multa
+where reserva.cd_reserva  in
 (select cd_reserva from multa
 where dt_pagto is null)
  -2.8: 

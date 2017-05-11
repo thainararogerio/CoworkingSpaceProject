@@ -187,5 +187,15 @@ namespace CoworkingSpaceProject
         {
             return DAOGenerico.BuscaReservasAgrupCliente(new reserva() { fl_pago = false }, SortOrder.Descending, _conexaoSql);
         }
+
+        internal List<reserva_multa> BuscaReservasComMultasNaoPagas()
+        {
+            return DAOGenerico.BuscaReservasMultaNaoPaga(_conexaoSql);
+        }
+
+        internal float BuscaSomaReservasCliente()
+        {
+            return ReservaDAO.BuscaTotalPendentePorCliente(new cliente() { cd_cliente = 3 }, _conexaoSql);
+        }
     }
 }

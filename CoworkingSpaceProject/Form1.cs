@@ -266,5 +266,36 @@ namespace CoworkingSpaceProject
             txtBox_Reservas.Text = txt;
             atualizaTextoComandosSQLExecutados();
         }
+
+        private void bt_ReservasMultasNaoPagas_Click(object sender, EventArgs e)
+        {
+            List<reserva_multa> crs = _acessoBanco.BuscaReservasComMultasNaoPagas();
+            string txt = "";
+            foreach (reserva_multa obj in crs)
+            {
+                txt += obj.cd_cliente;
+                txt += SEPARADOR_REGISTROS;
+                txt += obj.cd_sala;
+                txt += SEPARADOR_REGISTROS;
+                txt += obj.dt_entrada.ToString("dd-MM-yyyy HH:mm:ss");
+                txt += SEPARADOR_REGISTROS;
+                txt += obj.vl_multa;
+                txt += SEPARADOR_REGISTROS;
+                txt += obj.vl_reserva;
+                txt += "\r\n";
+            }
+
+            txtBox_Reservas.Clear();
+            txtBox_Reservas.Text = txt;
+            atualizaTextoComandosSQLExecutados();
+        }
+
+        private void bt_SomaReservasCliente_Click(object sender, EventArgs e)
+        {
+            float soma = _acessoBanco.BuscaSomaReservasCliente();
+            txtBox_Reservas.Clear();
+            txtBox_Reservas.Text = "R$" + soma.ToString("0.00");
+            atualizaTextoComandosSQLExecutados();
+        }
     }
 }

@@ -102,6 +102,32 @@ namespace CoworkingSpaceProject.Banco
             return reservas;
         }
 
-    
+        internal static float BuscaTotalPendentePorCliente(cliente cliente, SqlConnection conexaoSql)
+        {
+            float total = 0;
+
+            string sql = "SELECT SUM(vl_reserva) as total FROM " + NOME_TABELA;
+            sql += " where fl_pago = 0 and cd_cliente = " + cliente.cd_cliente;
+
+            SqlCommand cmd = conexaoSql.CreateCommand();
+            cmd.CommandText = sql;
+
+            AcessoBanco.comandosSqlExecutados += sql + "\r\n";
+
+            using (DbDataReader reader = cmd.ExecuteReader())
+            {
+                if (reader.HasRows)
+                {
+                    if (reader.Read())
+                    {
+                        int idx = reader.GetOrdinal("total");
+                        var vl_total = reader.GetDecimal(idx);
+                        total = float.Parse(vl_total.ToString());
+                    }
+                }
+            }
+
+            return total;
+        }
     }
 }

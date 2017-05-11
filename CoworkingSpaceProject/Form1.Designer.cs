@@ -49,6 +49,8 @@
             this.bt_clientesNaSalaEm = new System.Windows.Forms.Button();
             this.bt_ReservasCliente = new System.Windows.Forms.Button();
             this.bt_ReservasNaoPagasAgrupClientesOrdemValorDesc = new System.Windows.Forms.Button();
+            this.bt_ReservasMultasNaoPagas = new System.Windows.Forms.Button();
+            this.bt_SomaReservasCliente = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // bt_Reservas
@@ -170,7 +172,7 @@
             this.txtBox_ComandosSQL.Multiline = true;
             this.txtBox_ComandosSQL.Name = "txtBox_ComandosSQL";
             this.txtBox_ComandosSQL.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtBox_ComandosSQL.Size = new System.Drawing.Size(436, 510);
+            this.txtBox_ComandosSQL.Size = new System.Drawing.Size(436, 604);
             this.txtBox_ComandosSQL.TabIndex = 25;
             // 
             // label1
@@ -242,11 +244,33 @@
             this.bt_ReservasNaoPagasAgrupClientesOrdemValorDesc.UseVisualStyleBackColor = true;
             this.bt_ReservasNaoPagasAgrupClientesOrdemValorDesc.Click += new System.EventHandler(this.bt_ReservasNaoPagasAgrupClientesOrdemValorDesc_Click);
             // 
+            // bt_ReservasMultasNaoPagas
+            // 
+            this.bt_ReservasMultasNaoPagas.Location = new System.Drawing.Point(12, 532);
+            this.bt_ReservasMultasNaoPagas.Name = "bt_ReservasMultasNaoPagas";
+            this.bt_ReservasMultasNaoPagas.Size = new System.Drawing.Size(267, 23);
+            this.bt_ReservasMultasNaoPagas.TabIndex = 33;
+            this.bt_ReservasMultasNaoPagas.Text = "Reservas e suas multas não pagas";
+            this.bt_ReservasMultasNaoPagas.UseVisualStyleBackColor = true;
+            this.bt_ReservasMultasNaoPagas.Click += new System.EventHandler(this.bt_ReservasMultasNaoPagas_Click);
+            // 
+            // bt_SomaReservasCliente
+            // 
+            this.bt_SomaReservasCliente.Location = new System.Drawing.Point(12, 561);
+            this.bt_SomaReservasCliente.Name = "bt_SomaReservasCliente";
+            this.bt_SomaReservasCliente.Size = new System.Drawing.Size(267, 23);
+            this.bt_SomaReservasCliente.TabIndex = 34;
+            this.bt_SomaReservasCliente.Text = "Total a pagar das Reservas do cliente 3";
+            this.bt_SomaReservasCliente.UseVisualStyleBackColor = true;
+            this.bt_SomaReservasCliente.Click += new System.EventHandler(this.bt_SomaReservasCliente_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(991, 562);
+            this.ClientSize = new System.Drawing.Size(991, 656);
+            this.Controls.Add(this.bt_SomaReservasCliente);
+            this.Controls.Add(this.bt_ReservasMultasNaoPagas);
             this.Controls.Add(this.bt_ReservasNaoPagasAgrupClientesOrdemValorDesc);
             this.Controls.Add(this.bt_ReservasCliente);
             this.Controls.Add(this.bt_clientesNaSalaEm);
@@ -295,6 +319,8 @@
         private System.Windows.Forms.Button bt_clientesNaSalaEm;
         private System.Windows.Forms.Button bt_ReservasCliente;
         private System.Windows.Forms.Button bt_ReservasNaoPagasAgrupClientesOrdemValorDesc;
+        private System.Windows.Forms.Button bt_ReservasMultasNaoPagas;
+        private System.Windows.Forms.Button bt_SomaReservasCliente;
     }
 }
 
