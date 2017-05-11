@@ -67,3 +67,10 @@ create table multa
 	vl_multa numeric(8,2),
 	dt_pagto datetime
 );
+
+create view ReservasMultasNaoPagas as
+select reserva.cd_cliente, reserva.cd_sala, reserva.dt_entrada, reserva.vl_reserva, multa.vl_multa
+from reserva, multa
+where reserva.cd_reserva  in
+(select cd_reserva from multa
+where dt_pagto is null)

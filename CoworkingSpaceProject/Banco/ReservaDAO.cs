@@ -75,7 +75,6 @@ namespace CoworkingSpaceProject.Banco
             {
                 if (reader.HasRows)
                 {
-
                     while (reader.Read())
                     {
                         reserva reserva = new reserva();

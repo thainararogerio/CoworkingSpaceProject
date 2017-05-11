@@ -1,0 +1,13 @@
+C:\dev\Persona\BD\CoworkingSpaceProject\CoworkingSpaceProject\bin\Release\CoworkingSpaceProject.exe.config
+C:\dev\Persona\BD\CoworkingSpaceProject\CoworkingSpaceProject\bin\Release\CoworkingSpaceProject.exe
+C:\dev\Persona\BD\CoworkingSpaceProject\CoworkingSpaceProject\bin\Release\CoworkingSpaceProject.pdb
+C:\dev\Persona\BD\CoworkingSpaceProject\CoworkingSpaceProject\bin\Release\Iesi.Collections.dll
+C:\dev\Persona\BD\CoworkingSpaceProject\CoworkingSpaceProject\bin\Release\NHibernate.dll
+C:\dev\Persona\BD\CoworkingSpaceProject\CoworkingSpaceProject\bin\Release\Iesi.Collections.xml
+C:\dev\Persona\BD\CoworkingSpaceProject\CoworkingSpaceProject\bin\Release\NHibernate.xml
+C:\dev\Persona\BD\CoworkingSpaceProject\CoworkingSpaceProject\obj\Release\CoworkingSpaceProject.Form1.resources
+C:\dev\Persona\BD\CoworkingSpaceProject\CoworkingSpaceProject\obj\Release\CoworkingSpaceProject.Properties.Resources.resources
+C:\dev\Persona\BD\CoworkingSpaceProject\CoworkingSpaceProject\obj\Release\CoworkingSpaceProject.csproj.GenerateResource.Cache
+C:\dev\Persona\BD\CoworkingSpaceProject\CoworkingSpaceProject\obj\Release\CoworkingSpaceProject.exe
+C:\dev\Persona\BD\CoworkingSpaceProject\CoworkingSpaceProject\obj\Release\CoworkingSpaceProject.pdb
+C:\dev\Persona\BD\CoworkingSpaceProject\CoworkingSpaceProject\obj\Release\CoworkingSpaceProject.csprojResolveAssemblyReference.cache
