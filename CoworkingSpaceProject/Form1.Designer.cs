@@ -312,15 +312,15 @@
             // 
             // txtBox_nomeBanco
             // 
-            this.txtBox_nomeBanco.Location = new System.Drawing.Point(422, 387);
+            this.txtBox_nomeBanco.Location = new System.Drawing.Point(422, 275);
             this.txtBox_nomeBanco.Name = "txtBox_nomeBanco";
             this.txtBox_nomeBanco.Size = new System.Drawing.Size(100, 20);
             this.txtBox_nomeBanco.TabIndex = 39;
-            this.txtBox_nomeBanco.Text = "eCoworking3";
+            this.txtBox_nomeBanco.Text = "BaseCoworking";
             // 
             // bt_IniciaBanco
             // 
-            this.bt_IniciaBanco.Location = new System.Drawing.Point(422, 413);
+            this.bt_IniciaBanco.Location = new System.Drawing.Point(422, 301);
             this.bt_IniciaBanco.Name = "bt_IniciaBanco";
             this.bt_IniciaBanco.Size = new System.Drawing.Size(115, 23);
             this.bt_IniciaBanco.TabIndex = 40;

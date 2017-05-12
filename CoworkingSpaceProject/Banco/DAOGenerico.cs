@@ -61,12 +61,6 @@ namespace CoworkingSpaceProject.Banco
 
         internal static List<reserva_multa> BuscaReservasMultaNaoPaga(SqlConnection conexaoSql)
         {
-            //string sql = "select reserva.cd_cliente, reserva.cd_sala, reserva.dt_entrada, reserva.vl_reserva, multa.vl_multa ";
-            //sql += " from reserva, multa ";
-            //sql += " where reserva.cd_reserva  in ";
-            //sql += " (select cd_reserva from multa ";
-            //sql +=  " where dt_pagto is null) ";
-
             string sql = "select * from ReservasMultasNaoPagas";
 
             return LeReservaMulta(sql, conexaoSql);
